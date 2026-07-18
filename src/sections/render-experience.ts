@@ -2,17 +2,17 @@ import type { Experience } from '../types/resume';
 
 export function renderExperience(experience: Experience[]): string {
   return `
-    <section>
-      <h2>Experiência profissional</h2>
+    <section class="experience content-section">
+      <h2><span class="section-icon">▣</span>Experiência profissional</h2>
 
-      ${experience
+      <div class="timeline">${experience
         .map(
           (item) => `
-            <article>
-              <h3>${item.company}</h3>
-              <p>${item.role}</p>
-              <p>${item.startDate} — ${item.endDate}</p>
-              <p>${item.location}</p>
+            <article class="experience-item">
+              <div class="experience-heading">
+                <div><h3>${item.company}</h3><p class="role">${item.role}</p></div>
+                <div class="meta"><p>${item.startDate} — ${item.endDate}</p><p>${item.location}</p></div>
+              </div>
 
               <ul>
                 ${item.description
@@ -22,7 +22,7 @@ export function renderExperience(experience: Experience[]): string {
             </article>
           `,
         )
-        .join('')}
+        .join('')}</div>
     </section>
   `;
 }

@@ -41,6 +41,12 @@ export interface Language {
   level: string;
 }
 
+export interface Highlight {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 export interface Resume {
   personal: PersonalInfo;
   summary: Summary;
@@ -48,4 +54,5 @@ export interface Resume {
   experience: Experience[];
   education: Education[];
   languages: Language[];
+  highlights: Highlight[];
 }

@@ -2,13 +2,13 @@ import type { Education } from '../types/resume';
 
 export function renderEducation(education: Education[]): string {
   return `
-    <section>
-      <h2>Formação acadêmica</h2>
+    <section class="education content-section">
+      <h2><span class="section-icon">◆</span>Formação acadêmica</h2>
 
-      ${education
+      <div class="education-grid">${education
         .map(
           (item) => `
-            <article>
+            <article class="education-item">
               <h3>${item.institution}</h3>
               <p>${item.course}</p>
               <p>
@@ -19,7 +19,7 @@ export function renderEducation(education: Education[]): string {
             </article>
           `,
         )
-        .join('')}
+        .join('')}</div>
     </section>
   `;
 }

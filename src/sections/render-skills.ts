@@ -2,13 +2,13 @@ import type { SkillGroup } from '../types/resume';
 
 export function renderSkills(skills: SkillGroup[]): string {
   return `
-    <section>
-      <h2>Competências</h2>
+    <section class="skills sidebar-section">
+      <h2><span class="section-icon">&lt;/&gt;</span> Competências</h2>
 
       ${skills
         .map(
           (group) => `
-            <article>
+            <article class="skill-group">
               <h3>${group.title}</h3>
 
               <ul>

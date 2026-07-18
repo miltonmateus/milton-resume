@@ -108,5 +108,28 @@ export const resume: Resume = {
       name: 'Inglês',
       level: 'Fluente'
     }
+  ],
+
+  highlights: [
+    {
+      icon: '</>',
+      title: 'Atuação Full Stack',
+      description: 'Experiência sólida em backend e frontend, entregando soluções completas e integradas.'
+    },
+    {
+      icon: '◆',
+      title: 'Qualidade & Boas Práticas',
+      description: 'Foco em código limpo, testes, segurança, performance e manutenibilidade.'
+    },
+    {
+      icon: '↗',
+      title: 'Resolução de Problemas',
+      description: 'Análise crítica, investigação de incidentes e busca por soluções eficientes.'
+    },
+    {
+      icon: '●',
+      title: 'Trabalho em Equipe',
+      description: 'Colaboração em times ágeis e multidisciplinares, com comunicação clara e objetiva.'
+    }
   ]
 };

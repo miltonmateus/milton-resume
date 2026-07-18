@@ -29,6 +29,16 @@ img {
     max-width: 100%;
 }
 
+.profile-image {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
 button,
 input,
 textarea,

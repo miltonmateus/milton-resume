@@ -2,15 +2,16 @@ import type { Language } from '../types/resume';
 
 export function renderLanguages(languages: Language[]): string {
   return `
-    <section>
-      <h2>Idiomas</h2>
+    <section class="languages sidebar-section">
+      <h2><span class="section-icon">◎</span> Idiomas</h2>
 
       <ul>
         ${languages
           .map(
             (language) => `
-              <li>
-                <strong>${language.name}</strong>: ${language.level}
+              <li class="language-item">
+                <div><strong>${language.name}</strong><span>${language.level}</span></div>
+                <span class="language-bar"><i style="width: ${language.level === 'Nativo' ? '100' : '92'}%"></i></span>
               </li>
             `,
           )

@@ -1,0 +1,14 @@
+@media print {
+  @page { size: A4; margin: 0; }
+  html { font-size: 10px; }
+  body { background: #fff; }
+  .resume { grid-template-columns: 31% 69%; width: 210mm; min-height: 297mm; margin: 0; border-radius: 0; box-shadow: none; }
+  .sidebar { padding: 8mm 6mm; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .photo-ring { width: 48mm; height: 48mm; }
+  .content { padding: 10mm 9mm; }
+  .content-section { margin-bottom: 7mm; }
+  .experience-item { margin-bottom: 6mm; break-inside: avoid; }
+  .skill-group { margin-bottom: 3mm; }
+  .highlights { padding: 3mm 5mm; }
+  .highlight-item { padding: 2.5mm; }
+}
