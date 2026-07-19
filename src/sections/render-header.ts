@@ -8,12 +8,12 @@ export function renderHeader(personal: PersonalInfo): string {
       <p class="professional-title">${personal.professionalTitle}</p>
       <div class="title-rule"></div>
       <section class="contact sidebar-section">
-        <h2><span class="section-icon">◎</span> Contato</h2>
+        <h2><i class="section-icon" data-lucide="contact" aria-hidden="true"></i> Contato</h2>
         <ul>
-          <li><span aria-hidden="true">✉</span><a href="mailto:${personal.email}">${personal.email}</a></li>
-          <li><span aria-hidden="true">☎</span><a href="tel:${personal.phone}">${personal.phone}</a></li>
-          <li><span aria-hidden="true">●</span><span>${personal.location}</span></li>
-          <li><span aria-hidden="true">in</span><a href="${personal.linkedin}" target="_blank" rel="noreferrer">linkedin.com/in/milton-teixeira</a></li>
+          <li><i data-lucide="mail" aria-hidden="true"></i><a href="mailto:${personal.email}">${personal.email}</a></li>
+          <li><i data-lucide="phone" aria-hidden="true"></i><a href="tel:${personal.phone}">${personal.phone}</a></li>
+          <li><i data-lucide="map-pin" aria-hidden="true"></i><span>${personal.location}</span></li>
+          <li><i data-lucide="link" aria-hidden="true"></i><a href="${personal.linkedin}" target="_blank" rel="noreferrer">linkedin.com/in/milton-teixeira</a></li>
         </ul>
       </section>
     </header>

@@ -3,7 +3,7 @@ import type { Education } from '../types/resume';
 export function renderEducation(education: Education[]): string {
   return `
     <section class="education content-section">
-      <h2><span class="section-icon">◆</span>Formação acadêmica</h2>
+      <h2><i class="section-icon" data-lucide="graduation-cap" aria-hidden="true"></i>Formação acadêmica</h2>
 
       <div class="education-grid">${education
         .map(

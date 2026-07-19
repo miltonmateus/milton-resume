@@ -3,7 +3,7 @@ import type { Language } from '../types/resume';
 export function renderLanguages(languages: Language[]): string {
   return `
     <section class="languages sidebar-section">
-      <h2><span class="section-icon">◎</span> Idiomas</h2>
+      <h2><i class="section-icon" data-lucide="globe-2" aria-hidden="true"></i> Idiomas</h2>
 
       <ul>
         ${languages

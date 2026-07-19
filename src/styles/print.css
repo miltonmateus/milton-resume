@@ -2,6 +2,11 @@
   @page { size: A4; margin: 0; }
   html { font-size: 10px; }
   body { background: #fff; }
+  .resume-actions { display: none; }
+  .edit-toolbar { display: none; }
+  .resume--editing [contenteditable="true"] { outline: 0; background: none; }
+  .resume--executive { grid-template-columns: 28% 72%; border-top-width: 2mm; }
+  .resume--dark, .resume--dark .content, .resume--dark .highlights { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .resume { grid-template-columns: 31% 69%; width: 210mm; min-height: 297mm; margin: 0; border-radius: 0; box-shadow: none; }
   .sidebar { padding: 8mm 6mm; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .photo-ring { width: 48mm; height: 48mm; }

@@ -9,7 +9,7 @@ export function renderHighlights(highlights: Highlight[]): string {
           .map(
             (highlight) => `
               <article class="highlight-item">
-                <span class="highlight-icon" aria-hidden="true">${highlight.icon}</span>
+                <i class="highlight-icon" data-lucide="${highlight.icon}" aria-hidden="true"></i>
                 <div>
                   <h3>${highlight.title}</h3>
                   <p>${highlight.description}</p>
