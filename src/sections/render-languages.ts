@@ -1,20 +1,15 @@
 import type { Language } from '../types/resume';
+import { renderLanguageItem } from '../components/language-item';
+import { renderSectionTitle } from '../components/section-title';
 
 export function renderLanguages(languages: Language[]): string {
   return `
     <section class="languages sidebar-section">
-      <h2><i class="section-icon" data-lucide="globe-2" aria-hidden="true"></i> Idiomas</h2>
+      ${renderSectionTitle({ icon: 'globe-2', label: ' Idiomas' })}
 
       <ul>
         ${languages
-          .map(
-            (language) => `
-              <li class="language-item">
-                <div><strong>${language.name}</strong><span>${language.level}</span></div>
-                <span class="language-bar"><i style="width: ${language.level === 'Nativo' ? '100' : '92'}%"></i></span>
-              </li>
-            `,
-          )
+          .map(renderLanguageItem)
           .join('')}
       </ul>
     </section>

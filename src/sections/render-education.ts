@@ -1,24 +1,14 @@
 import type { Education } from '../types/resume';
+import { renderEducationItem } from '../components/education-item';
+import { renderSectionTitle } from '../components/section-title';
 
 export function renderEducation(education: Education[]): string {
   return `
     <section class="education content-section">
-      <h2><i class="section-icon" data-lucide="graduation-cap" aria-hidden="true"></i>Formação acadêmica</h2>
+      ${renderSectionTitle({ icon: 'graduation-cap', label: 'Formação acadêmica' })}
 
       <div class="education-grid">${education
-        .map(
-          (item) => `
-            <article class="education-item">
-              <h3>${item.institution}</h3>
-              <p>${item.course}</p>
-              <p>
-                ${item.startDate}
-                ${item.endDate ? ` — ${item.endDate}` : ''}
-              </p>
-              <p>${item.status}</p>
-            </article>
-          `,
-        )
+        .map(renderEducationItem)
         .join('')}</div>
     </section>
   `;

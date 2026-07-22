@@ -1,4 +1,7 @@
 import type { PersonalInfo } from '../types/resume';
+import { renderContactItem } from '../components/contact-item';
+import { renderSectionTitle } from '../components/section-title';
+import { escapeAttribute, escapeHtml, escapeUrl, renderTrustedHtml } from '../utils/html';
 
 function formatLinkedin(linkedin: string): string {
   return linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
@@ -7,17 +10,17 @@ function formatLinkedin(linkedin: string): string {
 export function renderHeader(personal: PersonalInfo): string {
   return `
     <header class="profile">
-      <div class="photo-ring"><img class="profile-image" src="${personal.profileImage}" alt="Foto de ${personal.fullName}" /></div>
-      <h1>${personal.fullName}</h1>
-      <p class="professional-title">${personal.professionalTitle}</p>
+      <div class="photo-ring"><img class="profile-image" src="${escapeUrl(personal.profileImage)}" alt="Foto de ${escapeAttribute(personal.fullName)}" /></div>
+      <h1>${escapeHtml(personal.fullName)}</h1>
+      <p class="professional-title">${renderTrustedHtml(personal.professionalTitle)}</p>
       <div class="title-rule"></div>
       <section class="contact sidebar-section">
-        <h2><i class="section-icon" data-lucide="contact" aria-hidden="true"></i> Contato</h2>
+        ${renderSectionTitle({ icon: 'contact', label: ' Contato' })}
         <ul>
-          <li><i data-lucide="mail" aria-hidden="true"></i><a href="mailto:${personal.email}">${personal.email}</a></li>
-          <li><i data-lucide="phone" aria-hidden="true"></i><a href="tel:${personal.phone}">${personal.phone}</a></li>
-          <li><i data-lucide="map-pin" aria-hidden="true"></i><span>${personal.location}</span></li>
-          <li><i data-lucide="link" aria-hidden="true"></i><a href="${personal.linkedin}" target="_blank" rel="noreferrer">${formatLinkedin(personal.linkedin)}</a></li>
+          ${renderContactItem({ icon: 'mail', text: personal.email, href: `mailto:${personal.email}` })}
+          ${renderContactItem({ icon: 'phone', text: personal.phone, href: `tel:${personal.phone}` })}
+          ${renderContactItem({ icon: 'map-pin', text: personal.location })}
+          ${renderContactItem({ icon: 'link', text: formatLinkedin(personal.linkedin), href: personal.linkedin })}
         </ul>
       </section>
     </header>

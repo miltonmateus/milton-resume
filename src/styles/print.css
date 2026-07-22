@@ -8,13 +8,47 @@
   .resume--editing [contenteditable="true"] { outline: 0; background: none; }
   .resume--executive { grid-template-columns: 28% 72%; border-top-width: 2mm; }
   .resume--dark, .resume--dark .content, .resume--dark .highlights { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  .resume { grid-template-columns: 31% 69%; width: 210mm; min-height: 297mm; margin: 0; border-radius: 0; box-shadow: none; }
-  .sidebar { padding: 8mm 6mm; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  .photo-ring { width: 48mm; height: 48mm; }
-  .content { padding: 10mm 9mm; }
-  .content-section { margin-bottom: 7mm; }
-  .experience-item { margin-bottom: 6mm; break-inside: avoid; }
-  .skill-group { margin-bottom: 3mm; }
-  .highlights { padding: 3mm 5mm; }
-  .highlight-item { padding: 2.5mm; }
+  .resume {
+    grid-template-columns: 30% 70%;
+    grid-template-rows: minmax(0, 1fr) auto;
+    width: 210mm;
+    height: 297mm;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .sidebar,
+  .content { min-height: 0; }
+  .sidebar { padding: 6mm 5mm; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .photo-ring { width: 42mm; height: 42mm; margin-bottom: 4mm; }
+  .profile h1 { font-size: 1.72rem; }
+  .professional-title { font-size: 1.02rem; }
+  .title-rule { margin: 3mm auto 5mm; }
+  .sidebar-section { margin-top: 4mm; padding-top: 3mm; }
+  .sidebar-section h2,
+  .content-section > h2 { margin-bottom: 3mm; }
+  .contact li { margin: 2mm 0; }
+  .content { padding: 7mm 8mm 6mm; }
+  .content-section { margin-bottom: 5mm; }
+  .summary p { font-size: .9rem; }
+  .experience-item { margin-bottom: 4mm; break-inside: avoid; }
+  .experience-heading { margin-bottom: 3mm; }
+  .experience-item ul { font-size: .84rem; }
+  .experience-item li { margin: 2px 0; }
+  .education-grid { gap: 5mm; }
+  .skill-group { margin-bottom: 2.5mm; }
+  .highlights {
+    align-self: end;
+    padding: 2mm 4mm 2.5mm;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .highlights > h2 { margin-bottom: 2mm; font-size: .92rem; }
+  .highlights-grid { border-radius: 3mm; }
+  .highlight-item { grid-template-columns: 8mm 1fr; gap: 2mm; padding: 2mm; }
+  .highlight-icon { width: 7mm; height: 7mm; }
+  .highlight-item h3 { margin-bottom: 1mm; font-size: .68rem; }
+  .highlight-item p { font-size: .58rem; line-height: 1.32; }
 }

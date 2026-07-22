@@ -142,7 +142,7 @@ export const blankResume: Resume = {
     phone: '(00) 00000-0000',
     location: 'Sua cidade - Estado',
     linkedin: 'https://www.linkedin.com/in/seu-perfil',
-    profileImage: '/profile.webp'
+    profileImage: '/profile-placeholder.svg'
   },
   summary: {
     title: 'Sobre mim',

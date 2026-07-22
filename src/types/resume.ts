@@ -44,7 +44,7 @@ export interface Language {
 export interface Highlight {
   title: string;
   description: string;
-  icon: string;
+  icon: ResumeIconName;
 }
 
 export interface Resume {
@@ -56,3 +56,32 @@ export interface Resume {
   languages: Language[];
   highlights: Highlight[];
 }
+
+export type ResumeIconName =
+  | 'blocks'
+  | 'braces'
+  | 'building-2'
+  | 'check'
+  | 'code-xml'
+  | 'contact'
+  | 'database'
+  | 'download'
+  | 'globe-2'
+  | 'graduation-cap'
+  | 'image-up'
+  | 'lightbulb'
+  | 'link'
+  | 'mail'
+  | 'map-pin'
+  | 'monitor-smartphone'
+  | 'panels-top-left'
+  | 'pencil'
+  | 'phone'
+  | 'pickaxe'
+  | 'plus'
+  | 'rotate-ccw'
+  | 'server-cog'
+  | 'shield-check'
+  | 'user-round-arrow-left'
+  | 'users-round'
+  | 'wrench';

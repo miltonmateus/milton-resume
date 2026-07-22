@@ -8,6 +8,7 @@
 }
 .download-pdf,
 .layout-picker,
+.back-to-original,
 .customize-resume {
   display: inline-flex;
   align-items: center;
@@ -23,14 +24,16 @@
   font-weight: 700;
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
-.download-pdf, .customize-resume { cursor: pointer; }
+.back-to-original[hidden] { display: none; }
+.download-pdf, .back-to-original, .customize-resume { cursor: pointer; }
 .customize-resume { color: #fff; background: linear-gradient(135deg, #087d8f, #0a9aae); box-shadow: 0 10px 28px rgb(7 28 52 / 24%); }
+.resume-actions .back-to-original { background: linear-gradient(135deg, #405a73, #1d2b3d); box-shadow: 0 10px 28px rgb(7 28 52 / 24%); }
 .layout-picker { padding: 8px 12px 8px 15px; color: var(--ink); background: #fff; box-shadow: 0 10px 28px rgb(7 28 52 / 20%); }
 .layout-picker-label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
 .layout-select { min-width: 104px; padding: 5px 26px 5px 8px; border: 1px solid #d5dce4; border-radius: 9px; color: var(--ink); background: #f6f8fa; font: inherit; font-weight: 700; cursor: pointer; }
-.download-pdf:hover, .layout-picker:hover, .customize-resume:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgb(7 28 52 / 34%); }
-.download-pdf:focus-visible, .customize-resume:focus-visible, .layout-select:focus-visible { outline: 3px solid rgb(9 198 223 / 55%); outline-offset: 3px; }
-.download-pdf svg, .customize-resume svg, .layout-picker > svg { width: 18px; height: 18px; }
+.download-pdf:hover, .layout-picker:hover, .back-to-original:hover, .customize-resume:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgb(7 28 52 / 34%); }
+.download-pdf:focus-visible, .back-to-original:focus-visible, .customize-resume:focus-visible, .layout-select:focus-visible { outline: 3px solid rgb(9 198 223 / 55%); outline-offset: 3px; }
+.download-pdf svg, .back-to-original svg, .customize-resume svg, .layout-picker > svg { width: 18px; height: 18px; }
 
 .start-dialog {
   width: min(560px, calc(100% - 32px));
@@ -59,8 +62,9 @@
   left: 50%;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
-  width: min(760px, calc(100% - 28px));
+  width: min(980px, calc(100% - 28px));
   padding: 11px 12px 11px 18px;
   border: 1px solid #cdd7e1;
   border-radius: 14px;
@@ -70,8 +74,8 @@
   backdrop-filter: blur(10px);
 }
 .edit-toolbar[hidden] { display: none; }
-.edit-toolbar p { flex: 1; margin: 0; color: var(--ink); font-size: .82rem; }
-.edit-toolbar button, .change-photo { display: inline-flex; align-items: center; gap: 6px; padding: 8px 11px; border: 1px solid #d1dae3; border-radius: 9px; color: var(--ink); background: #f4f7f9; font: inherit; font-size: .78rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.edit-toolbar p { flex: 1 1 220px; margin: 0; color: var(--ink); font-size: .82rem; }
+.edit-toolbar button, .change-photo { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 6px; padding: 8px 11px; border: 1px solid #d1dae3; border-radius: 9px; color: var(--ink); background: #f4f7f9; font: inherit; font-size: .78rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
 .edit-toolbar .finish-editing { color: #fff; border-color: #087d8f; background: #087d8f; }
 .edit-toolbar svg { width: 16px; height: 16px; }
 .photo-input { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
