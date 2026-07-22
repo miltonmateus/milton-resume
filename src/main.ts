@@ -3,8 +3,8 @@ import './styles/base.css';
 import './styles/layout.css';
 import './styles/print.css';
 
-import { resume } from './data/resume.data';
-import { renderResume } from './engine/resume-renderer';
+import { blankResume, resume } from './data/resume.data';
+import { renderResume, renderResumeContent } from './engine/resume-renderer';
 import {
   Blocks,
   Braces,
@@ -45,17 +45,10 @@ if (!app) {
 app.innerHTML = renderResume(resume);
 
 const resumeElement = document.querySelector<HTMLElement>('.resume');
-const savedResumeMarkup = localStorage.getItem('custom-resume-markup');
-if (resumeElement && savedResumeMarkup) {
-  resumeElement.innerHTML = savedResumeMarkup;
-  resumeElement.querySelectorAll<HTMLElement>('[contenteditable]').forEach((element) => {
-    element.removeAttribute('contenteditable');
-    element.spellcheck = false;
-  });
-}
 
-createIcons({
-  icons: {
+function renderIcons(): void {
+  createIcons({
+    icons: {
     UserRoundArrowLeft,
     Pickaxe,
     GraduationCap,
@@ -83,8 +76,11 @@ createIcons({
     RotateCcw,
     Check,
     Wrench,
-  },
-});
+    },
+  });
+}
+
+renderIcons();
 
 document.querySelector<HTMLButtonElement>('.download-pdf')?.addEventListener('click', () => {
   window.print();
@@ -113,6 +109,9 @@ const editToolbar = document.querySelector<HTMLElement>('.edit-toolbar');
 const finishEditingButton = document.querySelector<HTMLButtonElement>('.finish-editing');
 const resetResumeButton = document.querySelector<HTMLButtonElement>('.reset-resume');
 const photoInput = document.querySelector<HTMLInputElement>('.photo-input');
+const startDialog = document.querySelector<HTMLDialogElement>('.start-dialog');
+const startBlankButton = document.querySelector<HTMLButtonElement>('.start-blank');
+const startExampleButton = document.querySelector<HTMLButtonElement>('.start-example');
 const editableElementsSelector = 'h1, h2, h3, p, li, a';
 
 function saveCustomizedResume(): void {
@@ -254,7 +253,23 @@ function setEditing(enabled: boolean): void {
 }
 
 customizeButton?.addEventListener('click', () => {
-  setEditing(!resumeElement?.classList.contains('resume--editing'));
+  if (resumeElement?.classList.contains('resume--editing')) {
+    setEditing(false);
+    return;
+  }
+  startDialog?.showModal();
+});
+startBlankButton?.addEventListener('click', () => {
+  if (!resumeElement) return;
+  resumeElement.innerHTML = renderResumeContent(blankResume);
+  localStorage.removeItem('custom-resume-markup');
+  renderIcons();
+  startDialog?.close();
+  setEditing(true);
+});
+startExampleButton?.addEventListener('click', () => {
+  startDialog?.close();
+  setEditing(true);
 });
 finishEditingButton?.addEventListener('click', () => setEditing(false));
 resumeElement?.addEventListener('input', saveCustomizedResume);

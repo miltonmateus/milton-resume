@@ -4,6 +4,7 @@
   body { background: #fff; }
   .resume-actions { display: none; }
   .edit-toolbar { display: none; }
+  .start-dialog { display: none; }
   .resume--editing [contenteditable="true"] { outline: 0; background: none; }
   .resume--executive { grid-template-columns: 28% 72%; border-top-width: 2mm; }
   .resume--dark, .resume--dark .content, .resume--dark .highlights { print-color-adjust: exact; -webkit-print-color-adjust: exact; }

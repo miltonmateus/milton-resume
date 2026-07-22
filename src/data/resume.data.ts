@@ -133,3 +133,52 @@ export const resume: Resume = {
     }
   ]
 };
+
+export const blankResume: Resume = {
+  personal: {
+    fullName: 'Seu nome completo',
+    professionalTitle: 'Seu cargo ou área profissional',
+    email: 'seuemail@exemplo.com',
+    phone: '(00) 00000-0000',
+    location: 'Sua cidade - Estado',
+    linkedin: 'https://www.linkedin.com/in/seu-perfil',
+    profileImage: '/profile.webp'
+  },
+  summary: {
+    title: 'Sobre mim',
+    paragraphs: [
+      'Escreva um breve resumo sobre sua experiência, seus principais conhecimentos e seus objetivos profissionais.'
+    ]
+  },
+  skills: [
+    { title: 'Competências', skills: ['Competência 1', 'Competência 2', 'Competência 3'] },
+    { title: 'Ferramentas', skills: ['Ferramenta 1', 'Ferramenta 2'] }
+  ],
+  experience: [
+    {
+      company: 'Nome da empresa',
+      role: 'Cargo ou função',
+      startDate: 'Início',
+      endDate: 'Fim',
+      location: 'Cidade - Estado',
+      description: ['Descreva sua principal atividade, responsabilidade ou resultado.']
+    }
+  ],
+  education: [
+    {
+      institution: 'Nome da instituição',
+      course: 'Curso ou formação',
+      startDate: 'Ano de início',
+      endDate: 'Ano de conclusão',
+      status: 'Situação do curso'
+    }
+  ],
+  languages: [{ name: 'Idioma', level: 'Nível' }],
+  highlights: [
+    {
+      icon: 'lightbulb',
+      title: 'Seu diferencial',
+      description: 'Descreva uma qualidade, conquista ou diferencial profissional.'
+    }
+  ]
+};

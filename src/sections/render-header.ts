@@ -1,5 +1,9 @@
 import type { PersonalInfo } from '../types/resume';
 
+function formatLinkedin(linkedin: string): string {
+  return linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+}
+
 export function renderHeader(personal: PersonalInfo): string {
   return `
     <header class="profile">
@@ -13,7 +17,7 @@ export function renderHeader(personal: PersonalInfo): string {
           <li><i data-lucide="mail" aria-hidden="true"></i><a href="mailto:${personal.email}">${personal.email}</a></li>
           <li><i data-lucide="phone" aria-hidden="true"></i><a href="tel:${personal.phone}">${personal.phone}</a></li>
           <li><i data-lucide="map-pin" aria-hidden="true"></i><span>${personal.location}</span></li>
-          <li><i data-lucide="link" aria-hidden="true"></i><a href="${personal.linkedin}" target="_blank" rel="noreferrer">linkedin.com/in/milton-teixeira</a></li>
+          <li><i data-lucide="link" aria-hidden="true"></i><a href="${personal.linkedin}" target="_blank" rel="noreferrer">${formatLinkedin(personal.linkedin)}</a></li>
         </ul>
       </section>
     </header>

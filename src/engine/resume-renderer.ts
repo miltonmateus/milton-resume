@@ -38,7 +38,31 @@ export function renderResume(resume: Resume): string {
       <button class="reset-resume" type="button"><i data-lucide="rotate-ccw" aria-hidden="true"></i>Restaurar</button>
       <button class="finish-editing" type="button"><i data-lucide="check" aria-hidden="true"></i>Concluir</button>
     </div>
+    <dialog class="start-dialog" aria-labelledby="start-dialog-title">
+      <form method="dialog">
+        <button class="close-start-dialog" value="cancel" aria-label="Fechar">&times;</button>
+        <h2 id="start-dialog-title">Como deseja começar?</h2>
+        <p>Seu currículo original continuará sendo a primeira tela exibida no site.</p>
+        <div class="start-options">
+          <button class="start-blank" value="blank" type="button">
+            <strong>Começar em branco</strong>
+            <span>Use campos genéricos para preencher seus próprios dados.</span>
+          </button>
+          <button class="start-example" value="example" type="button">
+            <strong>Usar como exemplo</strong>
+            <span>Edite o currículo de Milton como ponto de partida.</span>
+          </button>
+        </div>
+      </form>
+    </dialog>
     <main class="resume">
+      ${renderResumeContent(resume)}
+    </main>
+  `;
+}
+
+export function renderResumeContent(resume: Resume): string {
+  return `
       <aside class="sidebar">
         ${renderHeader(resume.personal)}
         ${renderSkills(resume.skills)}
@@ -50,6 +74,5 @@ export function renderResume(resume: Resume): string {
         ${renderEducation(resume.education)}
       </div>
       ${renderHighlights(resume.highlights)}
-    </main>
   `;
 }
