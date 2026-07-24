@@ -1,4 +1,5 @@
 import type { Resume } from '../types/resume';
+import { renderCertificates } from '../sections/render-certificates';
 import { renderEducation } from '../sections/render-education';
 import { renderExperience } from '../sections/render-experience';
 import { renderHeader } from '../sections/render-header';
@@ -23,6 +24,7 @@ function renderContent(resume: Resume): string {
       ${renderSummary(resume.summary)}
       ${renderExperience(resume.experience)}
       ${renderEducation(resume.education)}
+      ${renderCertificates(resume.certificates)}
     </div>
   `;
 }

@@ -1,9 +1,9 @@
 import { selectors } from '../../constants/selectors';
 import { storageKeys } from '../../constants/storage';
 
-type ResumeLayout = 'creative' | 'executive' | 'dark';
+type ResumeLayout = 'creative' | 'executive' | 'dark' | 'studio';
 
-const layoutOrder: ResumeLayout[] = ['creative', 'executive', 'dark'];
+const layoutOrder: ResumeLayout[] = ['creative', 'executive', 'dark', 'studio'];
 
 function isResumeLayout(layout: string | null): layout is ResumeLayout {
   return layoutOrder.includes(layout as ResumeLayout);
@@ -16,6 +16,7 @@ function setLayout(
 ): void {
   resumeElement.classList.toggle('resume--executive', layout === 'executive');
   resumeElement.classList.toggle('resume--dark', layout === 'dark');
+  resumeElement.classList.toggle('resume--studio', layout === 'studio');
   if (layoutSelect) layoutSelect.value = layout;
   localStorage.setItem(storageKeys.resumeLayout, layout);
 }

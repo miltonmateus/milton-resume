@@ -1,3 +1,5 @@
+import { efSetCertificate } from '../constants/certificates';
+import { mondoCaneExperience } from '../constants/experience';
 import type { Resume } from '../types/resume';
 
 export const resume: Resume = {
@@ -8,6 +10,7 @@ export const resume: Resume = {
     phone: '+55 51 98138-4112',
     location: 'Porto Alegre - RS',
     linkedin: 'https://www.linkedin.com/in/milton-teixeira-89147598',
+    github: 'https://github.com/miltonmateus',
     profileImage: '/Milton.jpg'
   },
 
@@ -56,6 +59,7 @@ export const resume: Resume = {
         'Implementação de novas funcionalidades, integrações e correção de incidentes em produção.'
       ]
     },
+    mondoCaneExperience,
     {
       company: 'South System',
       role: 'Desenvolvedor Full Stack',
@@ -98,6 +102,8 @@ export const resume: Resume = {
       status: 'Não concluído'
     }
   ],
+
+  certificates: [efSetCertificate],
 
   languages: [
     {
@@ -142,6 +148,7 @@ export const blankResume: Resume = {
     phone: '(00) 00000-0000',
     location: 'Sua cidade - Estado',
     linkedin: 'https://www.linkedin.com/in/seu-perfil',
+    github: 'https://github.com/seu-usuario',
     profileImage: '/profile-placeholder.svg'
   },
   summary: {
@@ -151,8 +158,8 @@ export const blankResume: Resume = {
     ]
   },
   skills: [
-    { title: 'Competências', skills: ['Competência 1', 'Competência 2', 'Competência 3'] },
-    { title: 'Ferramentas', skills: ['Ferramenta 1', 'Ferramenta 2'] }
+    { title: 'Competências', skills: [] },
+    { title: 'Ferramentas', skills: [] }
   ],
   experience: [
     {
@@ -173,7 +180,8 @@ export const blankResume: Resume = {
       status: 'Situação do curso'
     }
   ],
-  languages: [{ name: 'Idioma', level: 'Nível' }],
+  certificates: [],
+  languages: [],
   highlights: [
     {
       icon: 'lightbulb',

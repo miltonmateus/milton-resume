@@ -1,8 +1,29 @@
 import { createEditButton } from '../../components/edit-buttons';
+import { renderCertificateItem } from '../../components/certificate-item';
+import { renderLanguageItem } from '../../components/language-item';
 import { selectors } from '../../constants/selectors';
 import { refreshResumeIcons } from '../icons/resume-icons';
 import { prepareEditableEntry } from './editable-entry';
 import { saveCustomizedResume } from './resume-storage';
+
+const languageLevels = ['Básico', 'Intermediário', 'Avançado', 'Fluente', 'Nativo'] as const;
+
+function normalizeLanguageLevel(level: string): string | null {
+  const normalizedLevel = level
+    .trim()
+    .toLocaleLowerCase('pt-BR')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  return languageLevels.find((option) => {
+    const normalizedOption = option
+      .toLocaleLowerCase('pt-BR')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+    return normalizedOption === normalizedLevel;
+  }) ?? null;
+}
 
 function addSkillControls(resumeElement: HTMLElement): void {
   resumeElement.querySelectorAll<HTMLElement>('.skill-group').forEach((group) => {
@@ -24,6 +45,36 @@ function addSkillControls(resumeElement: HTMLElement): void {
 
     group.appendChild(button);
   });
+}
+
+function addLanguageControl(resumeElement: HTMLElement): void {
+  const languagesSection = resumeElement.querySelector<HTMLElement>('.languages');
+  const languagesList = languagesSection?.querySelector<HTMLElement>('ul');
+  if (!languagesSection || !languagesList || languagesSection.querySelector(selectors.addLanguage)) return;
+
+  languagesSection.appendChild(createEditButton('add-skill add-language', 'Adicionar idioma', () => {
+    const name = window.prompt('Nome do idioma:')?.trim();
+    if (!name) return;
+
+    const level = normalizeLanguageLevel(window.prompt(
+      `Nível do idioma (${languageLevels.join(', ')}):`,
+      'Básico',
+    ) ?? '');
+
+    if (!level) {
+      window.alert(`Escolha um nível válido: ${languageLevels.join(', ')}.`);
+      return;
+    }
+
+    languagesList.insertAdjacentHTML('beforeend', renderLanguageItem({ name, level }));
+    const language = languagesList.querySelector<HTMLElement>('.language-item:last-child');
+    if (language) {
+      language.contentEditable = 'true';
+      language.spellcheck = true;
+      language.focus();
+    }
+    saveCustomizedResume(resumeElement);
+  }));
 }
 
 function addExperienceControl(resumeElement: HTMLElement): void {
@@ -77,6 +128,26 @@ function addEducationControl(resumeElement: HTMLElement): void {
   }));
 }
 
+function addCertificateControl(resumeElement: HTMLElement): void {
+  const certificatesSection = resumeElement.querySelector<HTMLElement>('.certificates');
+  const certificatesGrid = certificatesSection?.querySelector<HTMLElement>('.certificates-grid');
+  if (!certificatesSection || !certificatesGrid || certificatesSection.querySelector(selectors.addCertificate)) return;
+
+  certificatesSection.appendChild(createEditButton('add-section add-certificate', 'Adicionar certificado', () => {
+    certificatesGrid.insertAdjacentHTML('beforeend', renderCertificateItem({
+      title: 'Nome do certificado',
+      issuer: 'Instituição emissora',
+      date: 'Ano de emissão',
+    }));
+
+    const entry = certificatesGrid.querySelector<HTMLElement>('.certificate-item:last-child');
+    if (!entry) return;
+
+    prepareEditableEntry(entry);
+    saveCustomizedResume(resumeElement);
+  }));
+}
+
 function addHighlightControl(resumeElement: HTMLElement): void {
   const highlightsSection = resumeElement.querySelector<HTMLElement>('.highlights');
   const highlightsGrid = highlightsSection?.querySelector<HTMLElement>('.highlights-grid');
@@ -101,8 +172,10 @@ function addHighlightControl(resumeElement: HTMLElement): void {
 
 export function addResumeEditControls(resumeElement: HTMLElement): void {
   addSkillControls(resumeElement);
+  addLanguageControl(resumeElement);
   addExperienceControl(resumeElement);
   addEducationControl(resumeElement);
+  addCertificateControl(resumeElement);
   addHighlightControl(resumeElement);
   refreshResumeIcons();
 }

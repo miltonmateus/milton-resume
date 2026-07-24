@@ -18,6 +18,7 @@ export function renderResumeActions(): string {
           <option value="creative">Criativo</option>
           <option value="executive">Executivo</option>
           <option value="dark">Escuro</option>
+          <option value="studio">Studio</option>
         </select>
       </label>
       <button class="download-pdf" type="button" aria-label="Baixar currículo em PDF">

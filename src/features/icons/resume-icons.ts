@@ -1,4 +1,5 @@
 import {
+  Award,
   Blocks,
   Braces,
   Building2,
@@ -30,6 +31,7 @@ import {
 } from 'lucide';
 
 const resumeIcons = {
+  Award,
   Blocks,
   Braces,
   Building2,

@@ -5,6 +5,7 @@ export interface PersonalInfo {
   phone: string;
   location: string;
   linkedin: string;
+  github: string;
   profileImage: string;
 }
 
@@ -36,6 +37,13 @@ export interface Education {
   status: string;
 }
 
+export interface Certificate {
+  title: string;
+  issuer: string;
+  date?: string;
+  credentialUrl?: string;
+}
+
 export interface Language {
   name: string;
   level: string;
@@ -53,11 +61,13 @@ export interface Resume {
   skills: SkillGroup[];
   experience: Experience[];
   education: Education[];
+  certificates: Certificate[];
   languages: Language[];
   highlights: Highlight[];
 }
 
 export type ResumeIconName =
+  | 'award'
   | 'blocks'
   | 'braces'
   | 'building-2'

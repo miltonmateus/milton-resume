@@ -1,4 +1,6 @@
 export const selectors = {
+  addCertificate: '.add-certificate',
+  addLanguage: '.add-language',
   addSection: '.add-section',
   addSkill: '.add-skill',
   backToOriginal: '.back-to-original',
