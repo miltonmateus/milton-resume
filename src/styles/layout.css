@@ -55,6 +55,42 @@
 .start-options strong { color: #087d8f; font-size: .96rem; }
 .start-options span { color: var(--muted); font-size: .8rem; line-height: 1.45; }
 
+.experience-dialog {
+  width: min(640px, calc(100% - 32px));
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 24px 70px rgb(7 28 52 / 38%);
+}
+.experience-dialog::backdrop { background: rgb(7 28 52 / 58%); backdrop-filter: blur(4px); }
+.experience-dialog-form { position: relative; padding: 30px; }
+.experience-dialog h2 { margin-bottom: 20px; font-size: 1.35rem; }
+.close-experience-dialog { position: absolute; top: 13px; right: 16px; padding: 4px 8px; border: 0; color: var(--muted); background: transparent; font-size: 1.8rem; cursor: pointer; }
+.experience-dialog-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.experience-dialog label { display: flex; flex-direction: column; gap: 6px; color: #324359; font-size: .8rem; font-weight: 700; }
+.experience-dialog input,
+.experience-dialog select {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid #cfd8e5;
+  border-radius: 9px;
+  color: var(--ink);
+  background: #f7f9fb;
+  font: inherit;
+  font-size: .9rem;
+}
+.experience-dialog input:focus,
+.experience-dialog select:focus { outline: 3px solid rgb(9 198 223 / 35%); border-color: #087d8f; }
+.current-experience { margin-top: 16px; flex-direction: row !important; align-items: center; color: var(--ink); }
+.current-experience input { width: 16px; min-height: 16px; accent-color: #087d8f; }
+.experience-dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
+.experience-dialog-actions button { padding: 10px 14px; border-radius: 9px; font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; }
+.secondary-action { border: 1px solid #cfd8e5; color: var(--ink); background: #f7f9fb; }
+.primary-action { border: 1px solid #087d8f; color: #fff; background: #087d8f; }
+
 .edit-toolbar {
   position: fixed;
   z-index: 20;
@@ -121,6 +157,7 @@
 
 @media (max-width: 560px) {
   .start-options { grid-template-columns: 1fr; }
+  .experience-dialog-grid { grid-template-columns: 1fr; }
 }
 
 .resume {

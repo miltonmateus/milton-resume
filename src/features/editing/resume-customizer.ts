@@ -1,4 +1,4 @@
-import { maxProfileImageSizeInBytes, resumeAutosaveDelayInMs } from '../../constants/editing';
+import { allowedProfileImageTypes, maxProfileImageSizeInBytes, resumeAutosaveDelayInMs } from '../../constants/editing';
 import { selectors } from '../../constants/selectors';
 import { renderResumeContent } from '../../components/resume-layout';
 import { blankResume, resume } from '../../data/resume.data';
@@ -36,6 +36,12 @@ function initPhotoInput(resumeElement: HTMLElement): void {
   photoInput?.addEventListener('change', () => {
     const file = photoInput.files?.[0];
     if (!file) return;
+
+    if (!allowedProfileImageTypes.includes(file.type as typeof allowedProfileImageTypes[number])) {
+      window.alert('Escolha uma imagem em PNG, JPG ou WebP.');
+      photoInput.value = '';
+      return;
+    }
 
     if (file.size > maxProfileImageSizeInBytes) {
       window.alert('Escolha uma imagem com até 2 MB.');

@@ -26,6 +26,7 @@ export interface Experience {
   endDate: string;
   location: string;
   description: string[];
+  icon?: ResumeIconName;
   technologies?: string[];
 }
 

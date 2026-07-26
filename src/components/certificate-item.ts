@@ -1,10 +1,10 @@
 import type { Certificate } from '../types/resume';
-import { escapeAttribute, escapeHtml } from '../utils/html';
+import { escapeHtml, escapeUrl } from '../utils/html';
 
 export function renderCertificateItem(item: Certificate): string {
   const meta = [item.issuer, item.date].filter(Boolean).join(' - ');
   const credential = item.credentialUrl
-    ? `<a href="${escapeAttribute(item.credentialUrl)}" target="_blank" rel="noreferrer">Ver credencial</a>`
+    ? `<a href="${escapeUrl(item.credentialUrl)}" target="_blank" rel="noreferrer">Ver credencial</a>`
     : '';
 
   return `

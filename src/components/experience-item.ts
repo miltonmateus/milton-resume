@@ -5,7 +5,7 @@ import { escapeHtml } from '../utils/html';
 export function renderExperienceItem(item: Experience): string {
   return `
     <article class="experience-item">
-      ${renderIcon('building-2', 'timeline-marker')}
+      ${renderIcon(item.icon ?? 'building-2', 'timeline-marker')}
       <div class="experience-heading">
         <div><h3>${escapeHtml(item.company)}</h3><p class="role">${escapeHtml(item.role)}</p></div>
         <div class="meta">

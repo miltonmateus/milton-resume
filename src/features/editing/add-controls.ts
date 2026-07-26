@@ -1,12 +1,33 @@
 import { createEditButton } from '../../components/edit-buttons';
 import { renderCertificateItem } from '../../components/certificate-item';
+import { renderExperienceItem } from '../../components/experience-item';
 import { renderLanguageItem } from '../../components/language-item';
 import { selectors } from '../../constants/selectors';
+import type { Experience, ResumeIconName } from '../../types/resume';
 import { refreshResumeIcons } from '../icons/resume-icons';
 import { prepareEditableEntry } from './editable-entry';
 import { saveCustomizedResume } from './resume-storage';
 
 const languageLevels = ['Básico', 'Intermediário', 'Avançado', 'Fluente', 'Nativo'] as const;
+const experienceIconOptions: Array<{ value: ResumeIconName; label: string }> = [
+  { value: 'building-2', label: 'Empresa' },
+  { value: 'code-xml', label: 'Desenvolvimento' },
+  { value: 'server-cog', label: 'Backend' },
+  { value: 'monitor-smartphone', label: 'Frontend' },
+  { value: 'database', label: 'Dados' },
+  { value: 'users-round', label: 'Equipe' },
+  { value: 'shield-check', label: 'Qualidade' },
+  { value: 'wrench', label: 'Operações' },
+];
+
+function formatMonth(value: string): string {
+  if (!value) return '';
+
+  const [year, month] = value.split('-');
+  if (!year || !month) return value;
+
+  return `${month}/${year}`;
+}
 
 function normalizeLanguageLevel(level: string): string | null {
   const normalizedLevel = level
@@ -83,25 +104,118 @@ function addExperienceControl(resumeElement: HTMLElement): void {
   if (!experienceSection || !timeline || experienceSection.querySelector(selectors.addSection)) return;
 
   experienceSection.appendChild(createEditButton('add-section', 'Adicionar experiência', () => {
-    const template = timeline.querySelector<HTMLElement>('.experience-item:last-child');
-    if (!template) return;
+    const dialog = getExperienceDialog();
+    const form = dialog.querySelector<HTMLFormElement>('.experience-dialog-form');
+    const currentInput = dialog.querySelector<HTMLInputElement>('[name="current"]');
+    const endDateInput = dialog.querySelector<HTMLInputElement>('[name="endDate"]');
 
-    const entry = template.cloneNode(true) as HTMLElement;
-    const heading = entry.querySelector('h3');
-    const role = entry.querySelector('.role');
-    const meta = entry.querySelectorAll('.meta p');
-    const description = entry.querySelector('ul');
+    if (!form || !currentInput || !endDateInput) return;
 
-    if (heading) heading.textContent = 'Nome da empresa';
-    if (role) role.textContent = 'Cargo ou função';
-    if (meta[0]) meta[0].textContent = 'Início — Fim';
-    if (meta[1]) meta[1].textContent = 'Cidade - Estado';
-    if (description) description.innerHTML = '<li>Descreva sua principal atividade ou resultado.</li>';
+    form.reset();
+    endDateInput.disabled = false;
+    endDateInput.required = true;
+    dialog.showModal();
+    dialog.querySelector<HTMLInputElement>('[name="company"]')?.focus();
 
-    timeline.appendChild(entry);
-    prepareEditableEntry(entry);
-    saveCustomizedResume(resumeElement);
+    form.onsubmit = (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const isCurrent = formData.get('current') === 'on';
+      const startDate = String(formData.get('startDate') ?? '');
+      const endDate = isCurrent ? 'Atual' : String(formData.get('endDate') ?? '');
+
+      if (!isCurrent && endDate < startDate) {
+        window.alert('A data final deve ser posterior à data inicial.');
+        return;
+      }
+
+      const experience: Experience = {
+        company: String(formData.get('company') ?? '').trim(),
+        role: String(formData.get('role') ?? '').trim(),
+        startDate: formatMonth(startDate),
+        endDate: isCurrent ? 'Atual' : formatMonth(endDate),
+        location: String(formData.get('location') ?? '').trim(),
+        icon: String(formData.get('icon') ?? 'building-2') as ResumeIconName,
+        description: ['Descreva sua principal atividade ou resultado.'],
+      };
+
+      timeline.insertAdjacentHTML('beforeend', renderExperienceItem(experience));
+      const entry = timeline.querySelector<HTMLElement>('.experience-item:last-child');
+      if (entry) prepareEditableEntry(entry);
+      refreshResumeIcons();
+      saveCustomizedResume(resumeElement);
+      dialog.close();
+    };
   }));
+}
+
+function getExperienceDialog(): HTMLDialogElement {
+  const existingDialog = document.querySelector<HTMLDialogElement>('.experience-dialog');
+  if (existingDialog) return existingDialog;
+
+  const dialog = document.createElement('dialog');
+  dialog.className = 'experience-dialog edit-only';
+  dialog.innerHTML = `
+    <form class="experience-dialog-form" method="dialog">
+      <button class="close-experience-dialog" type="button" aria-label="Fechar">&times;</button>
+      <h2>Adicionar experiência</h2>
+      <div class="experience-dialog-grid">
+        <label>
+          Nome da experiência
+          <input name="company" type="text" placeholder="Empresa, projeto ou organização" required />
+        </label>
+        <label>
+          Ícone
+          <select name="icon">
+            ${experienceIconOptions.map((option) => `<option value="${option.value}">${option.label}</option>`).join('')}
+          </select>
+        </label>
+        <label>
+          Cargo ou função
+          <input name="role" type="text" placeholder="Desenvolvedor Full Stack" required />
+        </label>
+        <label>
+          Local
+          <input name="location" type="text" placeholder="Porto Alegre - RS" required />
+        </label>
+        <label>
+          Início
+          <input name="startDate" type="month" required />
+        </label>
+        <label>
+          Fim
+          <input name="endDate" type="month" required />
+        </label>
+      </div>
+      <label class="current-experience">
+        <input name="current" type="checkbox" />
+        Trabalho aqui atualmente
+      </label>
+      <div class="experience-dialog-actions">
+        <button type="button" class="secondary-action">Cancelar</button>
+        <button type="submit" class="primary-action">Adicionar</button>
+      </div>
+    </form>
+  `;
+
+  const currentInput = dialog.querySelector<HTMLInputElement>('[name="current"]');
+  const endDateInput = dialog.querySelector<HTMLInputElement>('[name="endDate"]');
+
+  currentInput?.addEventListener('change', () => {
+    if (!endDateInput || !currentInput) return;
+
+    endDateInput.disabled = currentInput.checked;
+    endDateInput.required = !currentInput.checked;
+    if (currentInput.checked) endDateInput.value = '';
+  });
+
+  dialog.querySelector<HTMLButtonElement>('.secondary-action')?.addEventListener('click', () => dialog.close());
+  dialog.querySelector<HTMLButtonElement>('.close-experience-dialog')?.addEventListener('click', () => dialog.close());
+
+  document.body.appendChild(dialog);
+
+  return dialog;
 }
 
 function addEducationControl(resumeElement: HTMLElement): void {

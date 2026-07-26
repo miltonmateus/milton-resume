@@ -6,8 +6,47 @@ import { mondoCaneExperience } from '../../constants/experience';
 import { renderCertificates } from '../../sections/render-certificates';
 import { selectors } from '../../constants/selectors';
 import { storageKeys } from '../../constants/storage';
+import { allowedProfileImageTypes } from '../../constants/editing';
 
 const githubUrl = 'https://github.com/miltonmateus';
+const unsafePersistedElementsSelector = 'script, style, iframe, object, embed, link, meta';
+const urlAttributes = new Set(['href', 'src']);
+
+function isSafePersistedUrl(value: string): boolean {
+  try {
+    const url = new URL(value, window.location.origin);
+    const isAllowedDataImage = allowedProfileImageTypes.some((type) => value.startsWith(`data:${type};`));
+
+    return (
+      url.protocol === 'http:' ||
+      url.protocol === 'https:' ||
+      url.protocol === 'mailto:' ||
+      url.protocol === 'tel:' ||
+      (url.protocol === 'data:' && isAllowedDataImage)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function sanitizePersistedMarkup(resumeElement: HTMLElement): void {
+  resumeElement.querySelectorAll(unsafePersistedElementsSelector).forEach((element) => element.remove());
+
+  resumeElement.querySelectorAll<HTMLElement>('*').forEach((element) => {
+    Array.from(element.attributes).forEach((attribute) => {
+      const attributeName = attribute.name.toLowerCase();
+
+      if (attributeName.startsWith('on')) {
+        element.removeAttribute(attribute.name);
+        return;
+      }
+
+      if (urlAttributes.has(attributeName) && !isSafePersistedUrl(attribute.value)) {
+        element.removeAttribute(attribute.name);
+      }
+    });
+  });
+}
 
 function ensureGithubContact(resumeElement: HTMLElement): void {
   const contactList = resumeElement.querySelector('.contact ul');
@@ -61,6 +100,7 @@ export function saveCustomizedResume(resumeElement: HTMLElement): void {
   const cleanResume = resumeElement.cloneNode(true) as HTMLElement;
 
   cleanResume.querySelectorAll(selectors.editOnly).forEach((element) => element.remove());
+  sanitizePersistedMarkup(cleanResume);
   cleanResume.querySelectorAll<HTMLElement>('[contenteditable]').forEach((element) => {
     element.removeAttribute('contenteditable');
     element.removeAttribute('spellcheck');
