@@ -50,6 +50,7 @@
     width: 210mm;
     min-height: 297mm;
     margin: 0;
+    padding-bottom: 0;
   }
   .sidebar,
   .content {

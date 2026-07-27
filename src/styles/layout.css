@@ -1,5 +1,5 @@
 .resume-actions {
-  position: fixed;
+  position: absolute;
   z-index: 10;
   right: 24px;
   bottom: 24px;
@@ -21,7 +21,7 @@
   backdrop-filter: blur(10px);
 }
 .locale-switcher button {
-  min-width: 58px;
+  min-width: 66px;
   min-height: 34px;
   padding: 7px 10px;
   border: 0;
@@ -30,6 +30,7 @@
   font: inherit;
   font-size: 0.76rem;
   font-weight: 800;
+  white-space: nowrap;
   cursor: pointer;
 }
 .locale-switcher button + button {
@@ -557,6 +558,7 @@ app-item-actions {
   width: min(1120px, 100% - 36px);
   min-height: 100vh;
   margin: 24px auto;
+  padding-bottom: 82px;
 }
 
 .resume-shell--toolbar-visible {
