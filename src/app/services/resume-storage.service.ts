@@ -135,6 +135,7 @@ export class ResumeStorageService {
       certificates: Array.isArray(resumeValue.certificates)
         ? resumeValue.certificates
         : fallback.certificates,
+      projects: Array.isArray(resumeValue.projects) ? resumeValue.projects : fallback.projects,
       languages: Array.isArray(resumeValue.languages) ? resumeValue.languages : fallback.languages,
       highlights: Array.isArray(resumeValue.highlights) ? resumeValue.highlights : fallback.highlights,
     };

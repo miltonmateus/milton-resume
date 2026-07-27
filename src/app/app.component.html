@@ -24,7 +24,7 @@
 />
 
 <div class="resume-shell" [class.resume-shell--toolbar-visible]="isEditing">
-  <app-locale-switcher [locale]="currentLocale" (localeChange)="changeLocale($event)" />
+  <app-locale-switcher *ngIf="!isEditing" [locale]="currentLocale" (localeChange)="changeLocale($event)" />
 
   <app-resume-actions
     [layout]="layout"

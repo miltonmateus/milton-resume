@@ -34,7 +34,6 @@
           (moveDown)="moveExperience(index, 1)"
           (remove)="removeExperience(index)"
         />
-        <i class="timeline-marker" [attr.data-lucide]="item.icon ?? 'building-2'" aria-hidden="true"></i>
         <div class="experience-heading">
           <div>
             <h3
@@ -193,6 +192,86 @@
     <button *ngIf="isEditing" class="add-section" type="button" (click)="addCertificate()">
       <i data-lucide="plus" aria-hidden="true"></i>
       {{ copy.editing.addCertificate }}
+    </button>
+  </section>
+
+  <section class="projects content-section" *ngIf="resume.projects.length || isEditing">
+    <h2>
+      <i class="section-icon" data-lucide="code-xml" aria-hidden="true"></i> {{ copy.sections.projects }}
+    </h2>
+    <div class="projects-grid">
+      <article class="project-item" *ngFor="let item of resume.projects; let index = index">
+        <app-item-actions
+          *ngIf="isEditing"
+          [moveUpLabel]="copy.editing.moveProjectUp"
+          [moveDownLabel]="copy.editing.moveProjectDown"
+          [removeLabel]="copy.editing.removeProject"
+          [moveUpHint]="copy.editing.moveProjectUp"
+          [moveDownHint]="copy.editing.moveProjectDown"
+          [removeHint]="copy.editing.removeProject"
+          [disableMoveUp]="index === 0"
+          [disableMoveDown]="index === resume.projects.length - 1"
+          (moveUp)="moveProject(index, -1)"
+          (moveDown)="moveProject(index, 1)"
+          (remove)="removeProject(index)"
+        />
+        <div class="project-heading">
+          <div>
+            <h3
+              [attr.contenteditable]="isEditing ? 'true' : null"
+              [attr.spellcheck]="isEditing"
+              (input)="updateText($event, item, 'title')"
+            >
+              {{ item.title }}
+            </h3>
+            <p
+              class="role"
+              [attr.contenteditable]="isEditing ? 'true' : null"
+              [attr.spellcheck]="isEditing"
+              (input)="updateText($event, item, 'role')"
+            >
+              {{ item.role }}
+            </p>
+          </div>
+          <p
+            class="project-period"
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (input)="updateText($event, item, 'period')"
+          >
+            {{ item.period }}
+          </p>
+        </div>
+        <p
+          class="project-description"
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateText($event, item, 'description')"
+        >
+          {{ item.description }}
+        </p>
+        <p
+          class="project-technologies"
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateProjectTechnologies($event, item)"
+        >
+          {{ item.technologies.join(', ') }}
+        </p>
+        <a
+          *ngIf="item.projectUrl"
+          [href]="item.projectUrl"
+          target="_blank"
+          rel="noreferrer"
+          [attr.aria-disabled]="isEditing"
+          (click)="preventLinkWhenEditing($event)"
+          >{{ copy.links.project }}</a
+        >
+      </article>
+    </div>
+    <button *ngIf="isEditing" class="add-section" type="button" (click)="addProject()">
+      <i data-lucide="plus" aria-hidden="true"></i>
+      {{ copy.editing.addProject }}
     </button>
   </section>
 </div>

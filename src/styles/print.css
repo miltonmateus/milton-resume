@@ -131,7 +131,8 @@
     gap: 5mm;
   }
   .education-item::before,
-  .certificate-item::before {
+  .certificate-item::before,
+  .project-item::before {
     z-index: 1;
     width: 2.4mm;
     height: 2.4mm;
@@ -145,6 +146,20 @@
   .certificate-item {
     min-height: 0;
     break-inside: avoid;
+  }
+  .projects-grid {
+    gap: 3mm;
+  }
+  .project-item {
+    padding: 0 0 0 5mm;
+    break-inside: avoid;
+  }
+  .project-description {
+    font-size: 0.84rem;
+  }
+  .project-technologies,
+  .project-item a {
+    font-size: 0.72rem;
   }
   .skill-group {
     margin-bottom: 2.5mm;

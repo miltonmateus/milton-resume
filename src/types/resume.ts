@@ -45,6 +45,15 @@ export interface Certificate {
   credentialUrl?: string;
 }
 
+export interface RecentProject {
+  title: string;
+  role: string;
+  period: string;
+  description: string;
+  technologies: string[];
+  projectUrl?: string;
+}
+
 export interface Language {
   name: string;
   level: string;
@@ -63,6 +72,7 @@ export interface Resume {
   experience: Experience[];
   education: Education[];
   certificates: Certificate[];
+  projects: RecentProject[];
   languages: Language[];
   highlights: Highlight[];
 }

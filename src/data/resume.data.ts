@@ -104,6 +104,17 @@ const ptBrResume: Resume = {
       credentialUrl: 'https://cert.efset.org/saRMra',
     },
   ],
+  projects: [
+    {
+      title: 'recupere.ia',
+      role: 'Projeto Full Stack',
+      period: '2026',
+      description:
+        'Aplicação orientada por IA para apoiar fluxos de recuperação, organização e análise de informações, com foco em experiência clara e operação eficiente.',
+      technologies: ['Angular', 'TypeScript', 'Node.js', 'IA'],
+      projectUrl: 'https://play.google.com/store/apps/details?id=com.vbb.appdiagnostic&pcampaignid=web_share',
+    },
+  ],
   languages: [
     { name: 'Português', level: 'Nativo' },
     { name: 'Inglês', level: 'Fluente' },
@@ -228,6 +239,17 @@ const enUsResume: Resume = {
       credentialUrl: 'https://cert.efset.org/saRMra',
     },
   ],
+  projects: [
+    {
+      title: 'recupere.ia',
+      role: 'Full Stack Project',
+      period: '2026',
+      description:
+        'AI-driven application designed to support information recovery, organization, and analysis workflows, with a clear user experience and efficient operation.',
+      technologies: ['Angular', 'TypeScript', 'Node.js', 'AI'],
+      projectUrl: 'https://play.google.com/store/apps/details?id=com.vbb.appdiagnostic&pcampaignid=web_share',
+    },
+  ],
   languages: [
     { name: 'Portuguese', level: 'Native' },
     { name: 'English', level: 'Fluent' },
@@ -307,6 +329,15 @@ export const blankResumesByLocale: Record<ResumeLocale, Resume> = {
       },
     ],
     certificates: [],
+    projects: [
+      {
+        title: 'Nome do projeto',
+        role: 'Seu papel no projeto',
+        period: 'Ano ou período',
+        description: 'Descreva o objetivo do projeto, sua contribuição e o resultado alcançado.',
+        technologies: ['Tecnologia'],
+      },
+    ],
     languages: [],
     highlights: [
       {
@@ -355,6 +386,15 @@ export const blankResumesByLocale: Record<ResumeLocale, Resume> = {
       },
     ],
     certificates: [],
+    projects: [
+      {
+        title: 'Project name',
+        role: 'Your role in the project',
+        period: 'Year or period',
+        description: 'Describe the project goal, your contribution, and the outcome achieved.',
+        technologies: ['Technology'],
+      },
+    ],
     languages: [],
     highlights: [
       {

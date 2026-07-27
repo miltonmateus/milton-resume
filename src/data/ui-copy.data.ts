@@ -18,6 +18,7 @@ export interface ResumeUiCopy {
   toolbar: {
     instructions: string;
     changePhoto: string;
+    backup: string;
     importJson: string;
     exportJson: string;
     restore: string;
@@ -52,12 +53,14 @@ export interface ResumeUiCopy {
     experience: string;
     education: string;
     certificates: string;
+    projects: string;
     highlights: string;
   };
   editing: {
     addExperience: string;
     addEducation: string;
     addCertificate: string;
+    addProject: string;
     addHighlight: string;
     addSkill: string;
     addLanguage: string;
@@ -73,12 +76,16 @@ export interface ResumeUiCopy {
     moveCertificateUp: string;
     moveCertificateDown: string;
     removeCertificate: string;
+    moveProjectUp: string;
+    moveProjectDown: string;
+    removeProject: string;
     moveHighlightUp: string;
     moveHighlightDown: string;
     removeHighlight: string;
   };
   links: {
     credential: string;
+    project: string;
   };
   messages: {
     restoreConfirm: string;
@@ -97,6 +104,11 @@ export interface ResumeUiCopy {
     certificateTitle: string;
     certificateIssuer: string;
     certificateDate: string;
+    projectTitle: string;
+    projectRole: string;
+    projectPeriod: string;
+    projectDescription: string;
+    projectTechnology: string;
     highlightTitle: string;
     highlightDescription: string;
     skill: string;
@@ -131,6 +143,7 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       instructions:
         'Edite os textos diretamente no currículo. As alterações são salvas automaticamente neste navegador.',
       changePhoto: 'Trocar foto',
+      backup: 'Backup',
       importJson: 'Importar JSON',
       exportJson: 'Exportar JSON',
       restore: 'Restaurar',
@@ -167,12 +180,14 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       experience: 'Experiência',
       education: 'Formação',
       certificates: 'Certificados',
+      projects: 'Projetos recentes',
       highlights: 'Destaques',
     },
     editing: {
       addExperience: 'Adicionar experiência',
       addEducation: 'Adicionar formação',
       addCertificate: 'Adicionar certificado',
+      addProject: 'Adicionar projeto',
       addHighlight: 'Adicionar destaque',
       addSkill: 'Adicionar competência',
       addLanguage: 'Adicionar idioma',
@@ -188,12 +203,16 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       moveCertificateUp: 'Mover certificado para cima',
       moveCertificateDown: 'Mover certificado para baixo',
       removeCertificate: 'Remover certificado',
+      moveProjectUp: 'Mover projeto para cima',
+      moveProjectDown: 'Mover projeto para baixo',
+      removeProject: 'Remover projeto',
       moveHighlightUp: 'Mover destaque para a esquerda',
       moveHighlightDown: 'Mover destaque para a direita',
       removeHighlight: 'Remover destaque',
     },
     links: {
       credential: 'Ver credencial',
+      project: 'Ver produto',
     },
     messages: {
       restoreConfirm: 'Restaurar todo o conteúdo original do currículo?',
@@ -213,6 +232,11 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       certificateTitle: 'Nome do certificado',
       certificateIssuer: 'Instituição emissora',
       certificateDate: 'Ano de emissão',
+      projectTitle: 'Nome do projeto',
+      projectRole: 'Seu papel no projeto',
+      projectPeriod: 'Ano ou período',
+      projectDescription: 'Descreva o objetivo do projeto, sua contribuição e o resultado alcançado.',
+      projectTechnology: 'Tecnologia',
       highlightTitle: 'Novo destaque',
       highlightDescription: 'Descreva uma qualidade, conquista ou diferencial profissional.',
       skill: 'Nova competência',
@@ -244,6 +268,7 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
     toolbar: {
       instructions: 'Edit the resume text directly. Changes are saved automatically in this browser.',
       changePhoto: 'Change photo',
+      backup: 'Backup',
       importJson: 'Import JSON',
       exportJson: 'Export JSON',
       restore: 'Restore',
@@ -279,12 +304,14 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       experience: 'Experience',
       education: 'Education',
       certificates: 'Certificates',
+      projects: 'Recent projects',
       highlights: 'Highlights',
     },
     editing: {
       addExperience: 'Add experience',
       addEducation: 'Add education',
       addCertificate: 'Add certificate',
+      addProject: 'Add project',
       addHighlight: 'Add highlight',
       addSkill: 'Add skill',
       addLanguage: 'Add language',
@@ -300,12 +327,16 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       moveCertificateUp: 'Move certificate up',
       moveCertificateDown: 'Move certificate down',
       removeCertificate: 'Remove certificate',
+      moveProjectUp: 'Move project up',
+      moveProjectDown: 'Move project down',
+      removeProject: 'Remove project',
       moveHighlightUp: 'Move highlight left',
       moveHighlightDown: 'Move highlight right',
       removeHighlight: 'Remove highlight',
     },
     links: {
       credential: 'View credential',
+      project: 'View product',
     },
     messages: {
       restoreConfirm: 'Restore all original resume content?',
@@ -325,6 +356,11 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       certificateTitle: 'Certificate name',
       certificateIssuer: 'Issuing organization',
       certificateDate: 'Issue year',
+      projectTitle: 'Project name',
+      projectRole: 'Your role in the project',
+      projectPeriod: 'Year or period',
+      projectDescription: 'Describe the project goal, your contribution, and the outcome achieved.',
+      projectTechnology: 'Technology',
       highlightTitle: 'New highlight',
       highlightDescription: 'Describe a strength, achievement, or professional differentiator.',
       skill: 'New skill',

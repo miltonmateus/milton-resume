@@ -7,15 +7,28 @@
     <i data-lucide="image-up" aria-hidden="true"></i>
     {{ copy.changePhoto }}
   </button>
-  <label class="change-photo">
-    <i data-lucide="upload" aria-hidden="true"></i>
-    {{ copy.importJson }}
-    <input class="photo-input" type="file" accept="application/json,.json" (change)="importResume($event)" />
-  </label>
-  <button type="button" (click)="exportResume.emit()">
-    <i data-lucide="download" aria-hidden="true"></i>
-    {{ copy.exportJson }}
-  </button>
+  <details class="backup-menu">
+    <summary>
+      <i data-lucide="download" aria-hidden="true"></i>
+      {{ copy.backup }}
+    </summary>
+    <div class="backup-menu-content">
+      <label class="backup-menu-action">
+        <i data-lucide="upload" aria-hidden="true"></i>
+        {{ copy.importJson }}
+        <input
+          class="photo-input"
+          type="file"
+          accept="application/json,.json"
+          (change)="importResume($event)"
+        />
+      </label>
+      <button class="backup-menu-action" type="button" (click)="exportResume.emit()">
+        <i data-lucide="download" aria-hidden="true"></i>
+        {{ copy.exportJson }}
+      </button>
+    </div>
+  </details>
   <button class="back-to-original" type="button" (click)="resetResume.emit()">
     <i data-lucide="rotate-ccw" aria-hidden="true"></i>
     {{ copy.restore }}

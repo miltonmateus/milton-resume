@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import type { ResumeUiCopy } from '../../../data/ui-copy.data';
-import type { Certificate, Education, Experience, Resume } from '../../../types/resume';
+import type { Certificate, Education, Experience, RecentProject, Resume } from '../../../types/resume';
 import { ItemActionsComponent } from '../item-actions/item-actions.component';
 
 @Component({
@@ -52,6 +52,14 @@ export class ResumeContentComponent {
     this.changed.emit();
   }
 
+  updateProjectTechnologies(event: Event, item: RecentProject): void {
+    item.technologies = ((event.target as HTMLElement).textContent ?? '')
+      .split(',')
+      .map((technology) => technology.trim())
+      .filter(Boolean);
+    this.changed.emit();
+  }
+
   preventLinkWhenEditing(event: MouseEvent): void {
     if (!this.isEditing) return;
     event.preventDefault();
@@ -77,6 +85,17 @@ export class ResumeContentComponent {
     this.changed.emit();
   }
 
+  addProject(): void {
+    this.resume.projects.push({
+      title: this.copy.placeholders.projectTitle,
+      role: this.copy.placeholders.projectRole,
+      period: this.copy.placeholders.projectPeriod,
+      description: this.copy.placeholders.projectDescription,
+      technologies: [this.copy.placeholders.projectTechnology],
+    });
+    this.changed.emit();
+  }
+
   removeExperience(index: number): void {
     this.resume.experience.splice(index, 1);
     this.changed.emit();
@@ -92,6 +111,11 @@ export class ResumeContentComponent {
     this.changed.emit();
   }
 
+  removeProject(index: number): void {
+    this.resume.projects.splice(index, 1);
+    this.changed.emit();
+  }
+
   moveExperience(index: number, direction: -1 | 1): void {
     this.moveItem(this.resume.experience, index, direction);
   }
@@ -102,6 +126,10 @@ export class ResumeContentComponent {
 
   moveCertificate(index: number, direction: -1 | 1): void {
     this.moveItem(this.resume.certificates, index, direction);
+  }
+
+  moveProject(index: number, direction: -1 | 1): void {
+    this.moveItem(this.resume.projects, index, direction);
   }
 
   private splitPeriod(value: string): [string, string] {
