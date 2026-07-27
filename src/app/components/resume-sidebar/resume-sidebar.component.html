@@ -1,0 +1,163 @@
+<aside class="sidebar">
+  <header class="profile">
+    <div class="photo-ring">
+      <img
+        class="profile-image"
+        [src]="resume.personal.profileImage"
+        [alt]="'Foto de ' + resume.personal.fullName"
+        (click)="isEditing && changePhoto.emit()"
+      />
+    </div>
+    <h1
+      [attr.contenteditable]="isEditing ? 'true' : null"
+      [attr.spellcheck]="isEditing"
+      (input)="updateText($event, resume.personal, 'fullName')"
+    >
+      {{ resume.personal.fullName }}
+    </h1>
+    <p
+      class="professional-title"
+      [attr.contenteditable]="isEditing ? 'true' : null"
+      [attr.spellcheck]="isEditing"
+      (input)="updateText($event, resume.personal, 'professionalTitle')"
+    >
+      {{ titleText(resume.personal.professionalTitle) }}
+    </p>
+    <div class="title-rule"></div>
+
+    <section class="contact sidebar-section">
+      <h2><i class="section-icon" data-lucide="contact" aria-hidden="true"></i> Contato</h2>
+      <ul>
+        <li>
+          <i data-lucide="mail" aria-hidden="true"></i>
+          <a
+            [href]="'mailto:' + resume.personal.email"
+            [attr.aria-disabled]="isEditing"
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (click)="preventLinkWhenEditing($event)"
+            (input)="updateText($event, resume.personal, 'email')"
+            >{{ resume.personal.email }}</a
+          >
+        </li>
+        <li>
+          <i data-lucide="phone" aria-hidden="true"></i>
+          <a
+            [href]="'tel:' + resume.personal.phone"
+            [attr.aria-disabled]="isEditing"
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (click)="preventLinkWhenEditing($event)"
+            (input)="updateText($event, resume.personal, 'phone')"
+            >{{ resume.personal.phone }}</a
+          >
+        </li>
+        <li>
+          <i data-lucide="map-pin" aria-hidden="true"></i>
+          <span
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (input)="updateText($event, resume.personal, 'location')"
+            >{{ resume.personal.location }}</span
+          >
+        </li>
+        <li>
+          <i data-lucide="link" aria-hidden="true"></i>
+          <a
+            [href]="resume.personal.linkedin"
+            [target]="externalTarget(resume.personal.linkedin)"
+            rel="noreferrer"
+            [attr.aria-disabled]="isEditing"
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (click)="preventLinkWhenEditing($event)"
+            (input)="updateText($event, resume.personal, 'linkedin')"
+            >{{ isEditing ? resume.personal.linkedin : linkLabel(resume.personal.linkedin) }}</a
+          >
+        </li>
+        <li>
+          <i data-lucide="code-xml" aria-hidden="true"></i>
+          <a
+            [href]="resume.personal.github"
+            [target]="externalTarget(resume.personal.github)"
+            rel="noreferrer"
+            [attr.aria-disabled]="isEditing"
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (click)="preventLinkWhenEditing($event)"
+            (input)="updateText($event, resume.personal, 'github')"
+            >{{ isEditing ? resume.personal.github : linkLabel(resume.personal.github) }}</a
+          >
+        </li>
+      </ul>
+    </section>
+  </header>
+
+  <section class="skills sidebar-section">
+    <h2><i class="section-icon" data-lucide="blocks" aria-hidden="true"></i> Competências</h2>
+    <div class="skill-group" *ngFor="let group of resume.skills">
+      <h3><i data-lucide="braces" aria-hidden="true"></i> {{ group.title }}</h3>
+      <ul>
+        <li *ngFor="let skill of group.skills; let index = index">
+          <span
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (input)="updateArrayText(group.skills, index, $event)"
+            >{{ skill }}</span
+          >
+          <app-hint *ngIf="isEditing" text="Remove esta competência do currículo.">
+            <button
+              class="chip-remove"
+              type="button"
+              aria-label="Remover competência"
+              (click)="removeSkill(group, index)"
+            >
+              <i data-lucide="trash-2" aria-hidden="true"></i>
+            </button>
+          </app-hint>
+        </li>
+      </ul>
+      <button *ngIf="isEditing" class="add-skill" type="button" (click)="addSkill(group)">
+        <i data-lucide="plus" aria-hidden="true"></i>
+        Adicionar competência
+      </button>
+    </div>
+  </section>
+
+  <section class="languages sidebar-section">
+    <h2><i class="section-icon" data-lucide="globe-2" aria-hidden="true"></i> Idiomas</h2>
+    <ul>
+      <li class="language-item" *ngFor="let language of resume.languages; let index = index">
+        <app-item-actions
+          *ngIf="isEditing"
+          [compact]="true"
+          [showMove]="false"
+          removeLabel="Remover idioma"
+          removeHint="Remove este idioma do currículo."
+          (remove)="removeLanguage(index)"
+        />
+        <div>
+          <strong
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (input)="updateText($event, language, 'name')"
+            >{{ language.name }}</strong
+          >
+          <span
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (input)="updateText($event, language, 'level')"
+            >{{ language.level }}</span
+          >
+        </div>
+        <span class="language-bar" aria-hidden="true"
+          ><i [style.width]="languageWidth(language.level)"></i
+        ></span>
+      </li>
+    </ul>
+    <button *ngIf="isEditing" class="add-skill" type="button" (click)="addLanguage()">
+      <i data-lucide="plus" aria-hidden="true"></i>
+      Adicionar idioma
+    </button>
+  </section>
+</aside>

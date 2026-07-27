@@ -1,0 +1,70 @@
+<dialog #dialog class="experience-dialog">
+  <form class="experience-dialog-form" (ngSubmit)="addExperience()">
+    <button class="close-experience-dialog" type="button" aria-label="Fechar" (click)="close()">
+      &times;
+    </button>
+    <h2>Adicionar experiência</h2>
+    <div class="experience-dialog-grid">
+      <label>
+        Nome da experiência
+        <input
+          name="company"
+          type="text"
+          placeholder="Empresa, projeto ou organização"
+          required
+          [(ngModel)]="experienceForm.company"
+        />
+      </label>
+      <label>
+        Ícone
+        <select name="icon" [(ngModel)]="experienceForm.icon">
+          <option *ngFor="let option of experienceIconOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </label>
+      <label>
+        Cargo ou função
+        <input
+          name="role"
+          type="text"
+          placeholder="Desenvolvedor Full Stack"
+          required
+          [(ngModel)]="experienceForm.role"
+        />
+      </label>
+      <label>
+        Local
+        <input
+          name="location"
+          type="text"
+          placeholder="Porto Alegre - RS"
+          required
+          [(ngModel)]="experienceForm.location"
+        />
+      </label>
+      <label>
+        Início
+        <input name="startDate" type="month" required [(ngModel)]="experienceForm.startDate" />
+      </label>
+      <label>
+        Fim
+        <input
+          name="endDate"
+          type="month"
+          [required]="!experienceForm.current"
+          [disabled]="experienceForm.current"
+          [(ngModel)]="experienceForm.endDate"
+        />
+      </label>
+    </div>
+    <label class="current-experience">
+      <input name="current" type="checkbox" [(ngModel)]="experienceForm.current" />
+      Trabalho aqui atualmente
+    </label>
+    <div class="experience-dialog-actions">
+      <button type="button" class="secondary-action" (click)="close()">Cancelar</button>
+      <button type="submit" class="primary-action">Adicionar</button>
+    </div>
+  </form>
+</dialog>

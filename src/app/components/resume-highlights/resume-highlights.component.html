@@ -1,0 +1,43 @@
+<section class="highlights">
+  <h2><i class="section-icon" data-lucide="star" aria-hidden="true"></i> Destaques</h2>
+  <div class="highlights-grid">
+    <article class="highlight-item" *ngFor="let item of highlights; let index = index">
+      <app-item-actions
+        *ngIf="isEditing"
+        [compact]="true"
+        moveUpLabel="Mover destaque para a esquerda"
+        moveDownLabel="Mover destaque para a direita"
+        removeLabel="Remover destaque"
+        moveUpHint="Move este destaque uma posição para a esquerda."
+        moveDownHint="Move este destaque uma posição para a direita."
+        removeHint="Remove este destaque do currículo."
+        [disableMoveUp]="index === 0"
+        [disableMoveDown]="index === highlights.length - 1"
+        (moveUp)="moveHighlight(index, -1)"
+        (moveDown)="moveHighlight(index, 1)"
+        (remove)="removeHighlight(index)"
+      />
+      <i class="highlight-icon" [attr.data-lucide]="item.icon" aria-hidden="true"></i>
+      <div>
+        <h3
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateText($event, item, 'title')"
+        >
+          {{ item.title }}
+        </h3>
+        <p
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateText($event, item, 'description')"
+        >
+          {{ item.description }}
+        </p>
+      </div>
+    </article>
+  </div>
+  <button *ngIf="isEditing" class="add-section" type="button" (click)="addHighlight()">
+    <i data-lucide="plus" aria-hidden="true"></i>
+    Adicionar destaque
+  </button>
+</section>

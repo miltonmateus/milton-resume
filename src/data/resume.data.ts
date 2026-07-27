@@ -11,7 +11,7 @@ export const resume: Resume = {
     location: 'Porto Alegre - RS',
     linkedin: 'https://www.linkedin.com/in/milton-teixeira-89147598',
     github: 'https://github.com/miltonmateus',
-    profileImage: '/Milton.jpg'
+    profileImage: '/Milton.jpg',
   },
 
   summary: {
@@ -19,31 +19,31 @@ export const resume: Resume = {
     paragraphs: [
       'Desenvolvedor Full Stack com mais de oito anos de experiência no desenvolvimento de aplicações web, APIs e sistemas corporativos.',
       'Atuação em projetos dos setores financeiro, judiciário e de recursos humanos, trabalhando tanto no backend quanto no frontend.',
-      'Experiência com Java, TypeScript, Node.js, NestJS, C#, Angular, React, SvelteKit e MongoDB.'
-    ]
+      'Experiência com Java, TypeScript, Node.js, NestJS, C#, Angular, React, SvelteKit e MongoDB.',
+    ],
   },
 
   skills: [
     {
       title: 'Linguagens',
-      skills: ['Java', 'TypeScript', 'JavaScript', 'C#', 'Python', 'PHP', 'SQL']
+      skills: ['Java', 'TypeScript', 'JavaScript', 'C#', 'Python', 'PHP', 'SQL'],
     },
     {
       title: 'Backend',
-      skills: ['Node.js', 'NestJS', 'ASP.NET Core', 'REST APIs', 'Swagger / OpenAPI']
+      skills: ['Node.js', 'NestJS', 'ASP.NET Core', 'REST APIs', 'Swagger / OpenAPI'],
     },
     {
       title: 'Frontend',
-      skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3']
+      skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'],
     },
     {
       title: 'Banco de dados',
-      skills: ['MongoDB', 'Oracle']
+      skills: ['MongoDB', 'Oracle'],
     },
     {
       title: 'Ferramentas',
-      skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman']
-    }
+      skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman'],
+    },
   ],
 
   experience: [
@@ -56,8 +56,8 @@ export const resume: Resume = {
       description: [
         'Desenvolvimento e manutenção de APIs REST para sistemas do setor financeiro.',
         'Desenvolvimento de aplicações web completas, atuando no backend e no frontend.',
-        'Implementação de novas funcionalidades, integrações e correção de incidentes em produção.'
-      ]
+        'Implementação de novas funcionalidades, integrações e correção de incidentes em produção.',
+      ],
     },
     mondoCaneExperience,
     {
@@ -70,8 +70,8 @@ export const resume: Resume = {
         'Desenvolvimento frontend utilizando Angular.',
         'Desenvolvimento backend com Node.js.',
         'Mineração e processamento de dados com Python e Beautiful Soup.',
-        'Refatoração de aplicações internas e participação em projetos de reconhecimento de imagens.'
-      ]
+        'Refatoração de aplicações internas e participação em projetos de reconhecimento de imagens.',
+      ],
     },
     {
       company: 'Tribunal de Justiça do Rio Grande do Sul',
@@ -82,9 +82,9 @@ export const resume: Resume = {
       description: [
         'Validação de dados provenientes de sistemas externos.',
         'Administração de acessos por meio do Microsoft Active Directory.',
-        'Suporte às bases Oracle utilizadas pelo órgão.'
-      ]
-    }
+        'Suporte às bases Oracle utilizadas pelo órgão.',
+      ],
+    },
   ],
 
   education: [
@@ -92,15 +92,15 @@ export const resume: Resume = {
       institution: 'Centro Universitário Ritter dos Reis',
       course: 'Tecnólogo em Desenvolvimento de Jogos Digitais',
       startDate: '2026',
-      status: 'Em andamento — 2º semestre'
+      status: 'Em andamento — 2º semestre',
     },
     {
       institution: 'Pontifícia Universidade Católica do Rio Grande do Sul',
       course: 'Bacharelado em Ciência da Computação',
       startDate: '2013',
       endDate: '2014',
-      status: 'Não concluído'
-    }
+      status: 'Não concluído',
+    },
   ],
 
   certificates: [efSetCertificate],
@@ -108,36 +108,36 @@ export const resume: Resume = {
   languages: [
     {
       name: 'Português',
-      level: 'Nativo'
+      level: 'Nativo',
     },
     {
       name: 'Inglês',
-      level: 'Fluente'
-    }
+      level: 'Fluente',
+    },
   ],
 
   highlights: [
     {
       icon: 'code-xml',
       title: 'Atuação Full Stack',
-      description: 'Experiência sólida em backend e frontend, entregando soluções completas e integradas.'
+      description: 'Experiência sólida em backend e frontend, entregando soluções completas e integradas.',
     },
     {
       icon: 'shield-check',
       title: 'Qualidade & Boas Práticas',
-      description: 'Foco em código limpo, testes, segurança, performance e manutenibilidade.'
+      description: 'Foco em código limpo, testes, segurança, performance e manutenibilidade.',
     },
     {
       icon: 'lightbulb',
       title: 'Resolução de Problemas',
-      description: 'Análise crítica, investigação de incidentes e busca por soluções eficientes.'
+      description: 'Análise crítica, investigação de incidentes e busca por soluções eficientes.',
     },
     {
       icon: 'users-round',
       title: 'Trabalho em Equipe',
-      description: 'Colaboração em times ágeis e multidisciplinares, com comunicação clara e objetiva.'
-    }
-  ]
+      description: 'Colaboração em times ágeis e multidisciplinares, com comunicação clara e objetiva.',
+    },
+  ],
 };
 
 export const blankResume: Resume = {
@@ -149,17 +149,17 @@ export const blankResume: Resume = {
     location: 'Sua cidade - Estado',
     linkedin: 'https://www.linkedin.com/in/seu-perfil',
     github: 'https://github.com/seu-usuario',
-    profileImage: '/profile-placeholder.svg'
+    profileImage: '/profile-placeholder.svg',
   },
   summary: {
     title: 'Sobre mim',
     paragraphs: [
-      'Escreva um breve resumo sobre sua experiência, seus principais conhecimentos e seus objetivos profissionais.'
-    ]
+      'Escreva um breve resumo sobre sua experiência, seus principais conhecimentos e seus objetivos profissionais.',
+    ],
   },
   skills: [
     { title: 'Competências', skills: [] },
-    { title: 'Ferramentas', skills: [] }
+    { title: 'Ferramentas', skills: [] },
   ],
   experience: [
     {
@@ -168,8 +168,8 @@ export const blankResume: Resume = {
       startDate: 'Início',
       endDate: 'Fim',
       location: 'Cidade - Estado',
-      description: ['Descreva sua principal atividade, responsabilidade ou resultado.']
-    }
+      description: ['Descreva sua principal atividade, responsabilidade ou resultado.'],
+    },
   ],
   education: [
     {
@@ -177,8 +177,8 @@ export const blankResume: Resume = {
       course: 'Curso ou formação',
       startDate: 'Ano de início',
       endDate: 'Ano de conclusão',
-      status: 'Situação do curso'
-    }
+      status: 'Situação do curso',
+    },
   ],
   certificates: [],
   languages: [],
@@ -186,7 +186,7 @@ export const blankResume: Resume = {
     {
       icon: 'lightbulb',
       title: 'Seu diferencial',
-      description: 'Descreva uma qualidade, conquista ou diferencial profissional.'
-    }
-  ]
+      description: 'Descreva uma qualidade, conquista ou diferencial profissional.',
+    },
+  ],
 };

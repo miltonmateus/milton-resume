@@ -1,0 +1,191 @@
+<div class="content">
+  <section class="summary content-section">
+    <h2>
+      <i class="section-icon" data-lucide="user-round-arrow-left" aria-hidden="true"></i>
+      {{ resume.summary.title }}
+    </h2>
+    <p
+      *ngFor="let paragraph of resume.summary.paragraphs; let index = index"
+      [attr.contenteditable]="isEditing ? 'true' : null"
+      [attr.spellcheck]="isEditing"
+      (input)="updateArrayText(resume.summary.paragraphs, index, $event)"
+    >
+      {{ paragraph }}
+    </p>
+  </section>
+
+  <section class="experience content-section">
+    <h2><i class="section-icon" data-lucide="pickaxe" aria-hidden="true"></i> Experiência</h2>
+    <div class="timeline">
+      <article class="experience-item" *ngFor="let item of resume.experience; let index = index">
+        <app-item-actions
+          *ngIf="isEditing"
+          moveUpLabel="Mover experiência para cima"
+          moveDownLabel="Mover experiência para baixo"
+          removeLabel="Remover experiência"
+          moveUpHint="Move esta experiência uma posição para cima."
+          moveDownHint="Move esta experiência uma posição para baixo."
+          removeHint="Remove esta experiência do currículo."
+          [disableMoveUp]="index === 0"
+          [disableMoveDown]="index === resume.experience.length - 1"
+          (moveUp)="moveExperience(index, -1)"
+          (moveDown)="moveExperience(index, 1)"
+          (remove)="removeExperience(index)"
+        />
+        <i class="timeline-marker" [attr.data-lucide]="item.icon ?? 'building-2'" aria-hidden="true"></i>
+        <div class="experience-heading">
+          <div>
+            <h3
+              [attr.contenteditable]="isEditing ? 'true' : null"
+              [attr.spellcheck]="isEditing"
+              (input)="updateText($event, item, 'company')"
+            >
+              {{ item.company }}
+            </h3>
+            <p
+              class="role"
+              [attr.contenteditable]="isEditing ? 'true' : null"
+              [attr.spellcheck]="isEditing"
+              (input)="updateText($event, item, 'role')"
+            >
+              {{ item.role }}
+            </p>
+          </div>
+          <div class="meta">
+            <p
+              [attr.contenteditable]="isEditing ? 'true' : null"
+              [attr.spellcheck]="isEditing"
+              (input)="updateExperiencePeriod($event, item)"
+            >
+              {{ item.startDate }} — {{ item.endDate }}
+            </p>
+            <p
+              [attr.contenteditable]="isEditing ? 'true' : null"
+              [attr.spellcheck]="isEditing"
+              (input)="updateText($event, item, 'location')"
+            >
+              {{ item.location }}
+            </p>
+          </div>
+        </div>
+        <ul>
+          <li
+            *ngFor="let description of item.description; let index = index"
+            [attr.contenteditable]="isEditing ? 'true' : null"
+            [attr.spellcheck]="isEditing"
+            (input)="updateArrayText(item.description, index, $event)"
+          >
+            {{ description }}
+          </li>
+        </ul>
+      </article>
+    </div>
+    <button *ngIf="isEditing" class="add-section" type="button" (click)="addExperienceRequested.emit()">
+      <i data-lucide="plus" aria-hidden="true"></i>
+      Adicionar experiência
+    </button>
+  </section>
+
+  <section class="education content-section">
+    <h2><i class="section-icon" data-lucide="graduation-cap" aria-hidden="true"></i> Formação</h2>
+    <div class="education-grid">
+      <article class="education-item" *ngFor="let item of resume.education; let index = index">
+        <app-item-actions
+          *ngIf="isEditing"
+          moveUpLabel="Mover formação para cima"
+          moveDownLabel="Mover formação para baixo"
+          removeLabel="Remover formação"
+          moveUpHint="Move esta formação uma posição para cima."
+          moveDownHint="Move esta formação uma posição para baixo."
+          removeHint="Remove esta formação do currículo."
+          [disableMoveUp]="index === 0"
+          [disableMoveDown]="index === resume.education.length - 1"
+          (moveUp)="moveEducation(index, -1)"
+          (moveDown)="moveEducation(index, 1)"
+          (remove)="removeEducation(index)"
+        />
+        <h3
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateText($event, item, 'institution')"
+        >
+          {{ item.institution }}
+        </h3>
+        <p
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateText($event, item, 'course')"
+        >
+          {{ item.course }}
+        </p>
+        <p
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateEducationPeriod($event, item)"
+        >
+          {{ item.startDate }}<ng-container *ngIf="item.endDate"> — {{ item.endDate }}</ng-container>
+        </p>
+        <p
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateText($event, item, 'status')"
+        >
+          {{ item.status }}
+        </p>
+      </article>
+    </div>
+    <button *ngIf="isEditing" class="add-section" type="button" (click)="addEducation()">
+      <i data-lucide="plus" aria-hidden="true"></i>
+      Adicionar formação
+    </button>
+  </section>
+
+  <section class="certificates content-section" *ngIf="resume.certificates.length || isEditing">
+    <h2><i class="section-icon" data-lucide="award" aria-hidden="true"></i> Certificados</h2>
+    <div class="certificates-grid">
+      <article class="certificate-item" *ngFor="let item of resume.certificates; let index = index">
+        <app-item-actions
+          *ngIf="isEditing"
+          moveUpLabel="Mover certificado para cima"
+          moveDownLabel="Mover certificado para baixo"
+          removeLabel="Remover certificado"
+          moveUpHint="Move este certificado uma posição para cima."
+          moveDownHint="Move este certificado uma posição para baixo."
+          removeHint="Remove este certificado do currículo."
+          [disableMoveUp]="index === 0"
+          [disableMoveDown]="index === resume.certificates.length - 1"
+          (moveUp)="moveCertificate(index, -1)"
+          (moveDown)="moveCertificate(index, 1)"
+          (remove)="removeCertificate(index)"
+        />
+        <h3
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateText($event, item, 'title')"
+        >
+          {{ item.title }}
+        </h3>
+        <p
+          [attr.contenteditable]="isEditing ? 'true' : null"
+          [attr.spellcheck]="isEditing"
+          (input)="updateCertificateIssuer($event, item)"
+        >
+          {{ item.issuer }}<ng-container *ngIf="item.date"> · {{ item.date }}</ng-container>
+        </p>
+        <a
+          *ngIf="item.credentialUrl"
+          [href]="item.credentialUrl"
+          target="_blank"
+          rel="noreferrer"
+          [attr.aria-disabled]="isEditing"
+          (click)="preventLinkWhenEditing($event)"
+          >Ver credencial</a
+        >
+      </article>
+    </div>
+    <button *ngIf="isEditing" class="add-section" type="button" (click)="addCertificate()">
+      <i data-lucide="plus" aria-hidden="true"></i>
+      Adicionar certificado
+    </button>
+  </section>
+</div>

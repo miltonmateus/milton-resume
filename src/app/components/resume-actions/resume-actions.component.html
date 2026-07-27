@@ -1,0 +1,32 @@
+<div class="resume-actions">
+  <label class="layout-picker">
+    <i data-lucide="panels-top-left" aria-hidden="true"></i>
+    <span class="layout-picker-label">Layout</span>
+    <select class="layout-select" [ngModel]="layout" (ngModelChange)="layoutChange.emit($event)">
+      <option value="default">Clássico</option>
+      <option value="executive">Executivo</option>
+      <option value="dark">Dark</option>
+      <option value="studio">Studio</option>
+    </select>
+  </label>
+
+  <button class="download-pdf" type="button" (click)="downloadPdf.emit()">
+    <i data-lucide="download" aria-hidden="true"></i>
+    Baixar PDF
+  </button>
+
+  <button
+    class="back-to-original"
+    type="button"
+    [hidden]="!hasCustomizedResume"
+    (click)="restoreOriginal.emit()"
+  >
+    <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+    Voltar ao original
+  </button>
+
+  <button class="customize-resume" type="button" [attr.aria-pressed]="isEditing" (click)="customize.emit()">
+    <i data-lucide="pencil" aria-hidden="true"></i>
+    {{ isEditing ? 'Editando currículo' : 'Crie seu currículo' }}
+  </button>
+</div>

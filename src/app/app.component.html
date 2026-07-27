@@ -1,0 +1,45 @@
+<app-resume-actions
+  [layout]="layout"
+  [isEditing]="isEditing"
+  [hasCustomizedResume]="hasCustomizedResume"
+  (layoutChange)="setLayout($event)"
+  (downloadPdf)="printResume()"
+  (customize)="openStartDialog()"
+  (restoreOriginal)="restoreOriginal()"
+/>
+
+<app-edit-toolbar
+  [isEditing]="isEditing"
+  [saveStatus]="saveStatus"
+  (finishEditing)="finishEditing()"
+  (resetResume)="resetResume()"
+  (exportResume)="exportResume()"
+  (resumeImported)="importResume($event)"
+  (photoSelected)="updatePhoto($event)"
+/>
+
+<app-start-dialog #startDialog (startExample)="startFromExample()" (startBlank)="startBlank()" />
+
+<app-experience-dialog #experienceDialog (experienceCreated)="addExperience($event)" />
+
+<main class="resume" [class.resume--toolbar-visible]="isEditing" [ngClass]="resumeClasses">
+  <app-resume-sidebar
+    [resume]="currentResume"
+    [isEditing]="isEditing"
+    (changed)="saveResume()"
+    (changePhoto)="openPhotoPicker()"
+  />
+
+  <app-resume-content
+    [resume]="currentResume"
+    [isEditing]="isEditing"
+    (changed)="saveResume()"
+    (addExperienceRequested)="openExperienceDialog()"
+  />
+
+  <app-resume-highlights
+    [highlights]="currentResume.highlights"
+    [isEditing]="isEditing"
+    (changed)="saveResume()"
+  />
+</main>

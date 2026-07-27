@@ -1,5 +1,7 @@
 import {
   Award,
+  ArrowDown,
+  ArrowUp,
   Blocks,
   Braces,
   Building2,
@@ -25,6 +27,9 @@ import {
   RotateCcw,
   ServerCog,
   ShieldCheck,
+  Star,
+  Trash2,
+  Upload,
   UserRoundArrowLeft,
   UsersRound,
   Wrench,
@@ -32,6 +37,8 @@ import {
 
 const resumeIcons = {
   Award,
+  ArrowDown,
+  ArrowUp,
   Blocks,
   Braces,
   Building2,
@@ -56,6 +63,9 @@ const resumeIcons = {
   RotateCcw,
   ServerCog,
   ShieldCheck,
+  Star,
+  Trash2,
+  Upload,
   UserRoundArrowLeft,
   UsersRound,
   Wrench,

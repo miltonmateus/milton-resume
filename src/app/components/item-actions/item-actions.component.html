@@ -1,0 +1,24 @@
+<div class="item-controls" [class.item-controls--compact]="compact">
+  <app-hint *ngIf="showMove" [text]="moveUpHint">
+    <button type="button" [attr.aria-label]="moveUpLabel" [disabled]="disableMoveUp" (click)="moveUp.emit()">
+      <i data-lucide="arrow-up" aria-hidden="true"></i>
+    </button>
+  </app-hint>
+
+  <app-hint *ngIf="showMove" [text]="moveDownHint">
+    <button
+      type="button"
+      [attr.aria-label]="moveDownLabel"
+      [disabled]="disableMoveDown"
+      (click)="moveDown.emit()"
+    >
+      <i data-lucide="arrow-down" aria-hidden="true"></i>
+    </button>
+  </app-hint>
+
+  <app-hint [text]="removeHint">
+    <button type="button" [attr.aria-label]="removeLabel" (click)="remove.emit()">
+      <i data-lucide="trash-2" aria-hidden="true"></i>
+    </button>
+  </app-hint>
+</div>

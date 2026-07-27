@@ -1,0 +1,17 @@
+<dialog #dialog class="start-dialog">
+  <form method="dialog">
+    <button class="close-start-dialog" type="button" aria-label="Fechar" (click)="close()">&times;</button>
+    <h2>Como você quer começar?</h2>
+    <p>Use o currículo atual como base ou comece com campos genéricos para preencher do zero.</p>
+    <div class="start-options">
+      <button type="button" (click)="startExample.emit()">
+        <strong>Usar este exemplo</strong>
+        <span>Editar o currículo atual mantendo a estrutura e os conteúdos como ponto de partida.</span>
+      </button>
+      <button type="button" (click)="startBlank.emit()">
+        <strong>Começar em branco</strong>
+        <span>Substituir o conteúdo por placeholders editáveis para montar outro currículo.</span>
+      </button>
+    </div>
+  </form>
+</dialog>

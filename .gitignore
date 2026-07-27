@@ -7,15 +7,39 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependencies
+node_modules/
+
+# Build outputs and framework caches
+dist/
+dist-ssr/
+.angular/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# Vite/Vitest temporary caches
+.vite/
+.vite-temp/
+
+# Local environment files
+.env
+.env.*
+!.env.example
 *.local
+
+# Package manager caches
+.pnpm-store/
+.npm/
+.yarn/
+.pnp.*
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
+.agents/
+.codex/
 .DS_Store
 *.suo
 *.ntvs*

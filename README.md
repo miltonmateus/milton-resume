@@ -1,6 +1,6 @@
 # Milton Resume
 
-Curriculo web feito com TypeScript e Vite, estruturado como um exemplo simples de componentizacao, renderizacao segura e separacao de responsabilidades.
+Curriculo web feito com Angular, TypeScript e CSS modular. A aplicacao renderiza um curriculo responsivo, permite edicao inline, troca de layout, upload local de foto e persistencia das customizacoes no navegador.
 
 ## Scripts
 
@@ -8,29 +8,31 @@ Curriculo web feito com TypeScript e Vite, estruturado como um exemplo simples d
 pnpm dev
 pnpm build
 pnpm preview
+pnpm lint
+pnpm test
+pnpm format
+pnpm check
 ```
 
 ## Arquitetura
 
-- `src/components`: componentes pequenos de UI e itens reutilizaveis.
-- `src/sections`: composicao das secoes principais do curriculo.
-- `src/features`: comportamentos interativos, como edicao inline, troca de layout e icones.
-- `src/constants`: seletores, chaves de storage e valores compartilhados.
+- `src/app`: aplicacao Angular standalone, componentes de tela e services.
+- `src/app/components`: componentes Angular de toolbar, dialogs, sidebar, conteudo e destaques.
+- `src/app/services`: estado do curriculo, persistencia versionada e layout.
 - `src/data`: conteudo base do curriculo.
-- `src/types`: contratos TypeScript usados pela renderizacao.
-- `src/utils`: helpers de formatacao e seguranca.
-- `src/styles`: estilos separados por responsabilidade.
+- `src/types`: contratos TypeScript usados pelo estado e pelos templates.
+- `src/constants`: chaves de storage, limites de upload e dados compartilhados.
+- `src/features/icons`: integracao com os icones Lucide usados pelo template.
+- `src/styles`: estilos globais separados por responsabilidade.
 
 ## Boas Praticas Aplicadas
 
-- Componentes focados em uma unica responsabilidade.
-- Tipagem explicita para os dados do curriculo e nomes de icones.
-- Constantes centralizadas para evitar strings magicas espalhadas.
-- Escape de HTML, atributos e URLs antes de renderizar dados dinamicos.
-- HTML confiavel marcado de forma explicita com `renderTrustedHtml`.
-- Persistencia de customizacoes isolada em uma feature propria.
-- `main.ts` mantido como ponto de bootstrap da aplicacao.
-
-## Observacao de Seguranca
-
-O campo `professionalTitle` permite HTML intencionalmente para preservar o destaque visual existente. Novos campos devem usar `escapeHtml` por padrao e so usar `renderTrustedHtml` quando o HTML for controlado pelo proprio projeto.
+- Angular standalone na versao 22.
+- Estado do curriculo persistido como JSON estruturado e versionado, evitando salvar HTML cru.
+- Templates declarativos com bindings Angular em vez de montagem manual de strings HTML.
+- Tipagem explicita para o modelo de curriculo e nomes de icones.
+- Layouts visuais reaproveitando as classes CSS existentes.
+- Upload de imagem validado por tipo e tamanho antes da persistencia local.
+- Importacao e exportacao do curriculo em JSON.
+- Controles de edicao para adicionar, remover e reordenar itens repetidos.
+- ESLint, Prettier, Husky, lint-staged, Vitest e CI com GitHub Actions.
