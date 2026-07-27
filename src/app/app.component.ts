@@ -6,6 +6,7 @@ import { refreshResumeIcons } from '../features/icons/resume-icons';
 import type { Experience, Resume } from '../types/resume';
 import { EditToolbarComponent } from './components/edit-toolbar/edit-toolbar.component';
 import { ExperienceDialogComponent } from './components/experience-dialog/experience-dialog.component';
+import { LocaleSwitcherComponent } from './components/locale-switcher/locale-switcher.component';
 import { ResumeActionsComponent } from './components/resume-actions/resume-actions.component';
 import { ResumeContentComponent } from './components/resume-content/resume-content.component';
 import { ResumeHighlightsComponent } from './components/resume-highlights/resume-highlights.component';
@@ -14,6 +15,7 @@ import { StartDialogComponent } from './components/start-dialog/start-dialog.com
 import { ResumeLayoutService } from './services/resume-layout.service';
 import type { ResumeLayout } from './services/resume-layout.service';
 import { ResumeStoreService } from './services/resume-store.service';
+import type { ResumeLocale } from '../types/resume';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,7 @@ import { ResumeStoreService } from './services/resume-store.service';
     CommonModule,
     EditToolbarComponent,
     ExperienceDialogComponent,
+    LocaleSwitcherComponent,
     ResumeActionsComponent,
     ResumeContentComponent,
     ResumeHighlightsComponent,
@@ -43,6 +46,14 @@ export class AppComponent implements AfterViewChecked {
 
   get currentResume(): Resume {
     return this.resumeStore.resume();
+  }
+
+  get currentLocale(): ResumeLocale {
+    return this.resumeStore.locale();
+  }
+
+  get copy() {
+    return this.resumeStore.copy();
   }
 
   get hasCustomizedResume(): boolean {
@@ -106,8 +117,16 @@ export class AppComponent implements AfterViewChecked {
   }
 
   resetResume(): void {
-    if (!window.confirm('Restaurar todo o conteúdo original do currículo?')) return;
+    if (!window.confirm(this.copy.messages.restoreConfirm)) return;
     this.restoreOriginal();
+  }
+
+  changeLocale(locale: ResumeLocale): void {
+    if (locale === this.currentLocale) return;
+    if (this.hasCustomizedResume && !window.confirm(this.copy.messages.switchCustomizedConfirm)) return;
+
+    this.resumeStore.setLocale(locale);
+    this.isEditing = false;
   }
 
   openExperienceDialog(): void {
@@ -138,7 +157,7 @@ export class AppComponent implements AfterViewChecked {
     try {
       this.resumeStore.importResume(fileContent);
     } catch {
-      window.alert('Não foi possível importar este arquivo JSON.');
+      window.alert(this.copy.messages.importError);
     }
   }
 

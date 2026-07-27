@@ -1,0 +1,11 @@
+<div class="locale-switcher" aria-label="Resume language">
+  <button
+    *ngFor="let option of localeOptions"
+    type="button"
+    [class.locale-switcher-active]="option.value === locale"
+    [attr.aria-pressed]="option.value === locale"
+    (click)="localeChange.emit(option.value)"
+  >
+    {{ option.label }}
+  </button>
+</div>

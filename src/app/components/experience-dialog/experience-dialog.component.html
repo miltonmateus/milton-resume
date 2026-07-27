@@ -1,22 +1,22 @@
 <dialog #dialog class="experience-dialog">
   <form class="experience-dialog-form" (ngSubmit)="addExperience()">
-    <button class="close-experience-dialog" type="button" aria-label="Fechar" (click)="close()">
+    <button class="close-experience-dialog" type="button" [attr.aria-label]="copy.close" (click)="close()">
       &times;
     </button>
-    <h2>Adicionar experiência</h2>
+    <h2>{{ copy.experienceTitle }}</h2>
     <div class="experience-dialog-grid">
       <label>
-        Nome da experiência
+        {{ copy.experienceName }}
         <input
           name="company"
           type="text"
-          placeholder="Empresa, projeto ou organização"
+          [placeholder]="copy.experienceNamePlaceholder"
           required
           [(ngModel)]="experienceForm.company"
         />
       </label>
       <label>
-        Ícone
+        {{ copy.icon }}
         <select name="icon" [(ngModel)]="experienceForm.icon">
           <option *ngFor="let option of experienceIconOptions" [value]="option.value">
             {{ option.label }}
@@ -24,31 +24,31 @@
         </select>
       </label>
       <label>
-        Cargo ou função
+        {{ copy.role }}
         <input
           name="role"
           type="text"
-          placeholder="Desenvolvedor Full Stack"
+          [placeholder]="copy.rolePlaceholder"
           required
           [(ngModel)]="experienceForm.role"
         />
       </label>
       <label>
-        Local
+        {{ copy.location }}
         <input
           name="location"
           type="text"
-          placeholder="Porto Alegre - RS"
+          [placeholder]="copy.locationPlaceholder"
           required
           [(ngModel)]="experienceForm.location"
         />
       </label>
       <label>
-        Início
+        {{ copy.start }}
         <input name="startDate" type="month" required [(ngModel)]="experienceForm.startDate" />
       </label>
       <label>
-        Fim
+        {{ copy.end }}
         <input
           name="endDate"
           type="month"
@@ -60,11 +60,11 @@
     </div>
     <label class="current-experience">
       <input name="current" type="checkbox" [(ngModel)]="experienceForm.current" />
-      Trabalho aqui atualmente
+      {{ copy.current }}
     </label>
     <div class="experience-dialog-actions">
-      <button type="button" class="secondary-action" (click)="close()">Cancelar</button>
-      <button type="submit" class="primary-action">Adicionar</button>
+      <button type="button" class="secondary-action" (click)="close()">{{ copy.cancel }}</button>
+      <button type="submit" class="primary-action">{{ copy.add }}</button>
     </div>
   </form>
 </dialog>

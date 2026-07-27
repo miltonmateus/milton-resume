@@ -1,8 +1,8 @@
-import { efSetCertificate } from '../constants/certificates';
-import { mondoCaneExperience } from '../constants/experience';
-import type { Resume } from '../types/resume';
+import type { Resume, ResumeLocale } from '../types/resume';
 
-export const resume: Resume = {
+export const defaultResumeLocale: ResumeLocale = 'pt-BR';
+
+const ptBrResume: Resume = {
   personal: {
     fullName: 'Milton Mateus Alves Teixeira Filho',
     professionalTitle: 'Software Engineer <span>.</span> Full Stack Developer',
@@ -13,7 +13,6 @@ export const resume: Resume = {
     github: 'https://github.com/miltonmateus',
     profileImage: '/Milton.jpg',
   },
-
   summary: {
     title: 'Sobre mim',
     paragraphs: [
@@ -22,30 +21,13 @@ export const resume: Resume = {
       'Experiência com Java, TypeScript, Node.js, NestJS, C#, Angular, React, SvelteKit e MongoDB.',
     ],
   },
-
   skills: [
-    {
-      title: 'Linguagens',
-      skills: ['Java', 'TypeScript', 'JavaScript', 'C#', 'Python', 'PHP', 'SQL'],
-    },
-    {
-      title: 'Backend',
-      skills: ['Node.js', 'NestJS', 'ASP.NET Core', 'REST APIs', 'Swagger / OpenAPI'],
-    },
-    {
-      title: 'Frontend',
-      skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'],
-    },
-    {
-      title: 'Banco de dados',
-      skills: ['MongoDB', 'Oracle'],
-    },
-    {
-      title: 'Ferramentas',
-      skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman'],
-    },
+    { title: 'Linguagens', skills: ['Java', 'TypeScript', 'JavaScript', 'C#', 'Python', 'PHP', 'SQL'] },
+    { title: 'Backend', skills: ['Node.js', 'NestJS', 'ASP.NET Core', 'REST APIs', 'Swagger / OpenAPI'] },
+    { title: 'Frontend', skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'] },
+    { title: 'Banco de dados', skills: ['MongoDB', 'Oracle'] },
+    { title: 'Ferramentas', skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman'] },
   ],
-
   experience: [
     {
       company: 'Villela Brasil Bank',
@@ -59,7 +41,21 @@ export const resume: Resume = {
         'Implementação de novas funcionalidades, integrações e correção de incidentes em produção.',
       ],
     },
-    mondoCaneExperience,
+    {
+      company: 'Mondo Cane Bar',
+      role: 'Proprietário e Administrador',
+      startDate: '2019',
+      endDate: '2024',
+      location: 'Cidade Baixa, Porto Alegre - RS',
+      description: [
+        'Gestão de espaço cultural voltado à literatura, cinema, música e artes, promovendo convivência e expressão cultural.',
+        'Administração financeira, operacional e estratégica do estabelecimento.',
+        'Planejamento e produção de eventos culturais de literatura, cinema e música.',
+        'Gestão de fornecedores, compras, estoque e controle de custos.',
+        'Coordenação das operações diárias, atendimento ao público e relacionamento com clientes.',
+        'Desenvolvimento de ações para fortalecimento da comunidade e fidelização de clientes.',
+      ],
+    },
     {
       company: 'South System',
       role: 'Desenvolvedor Full Stack',
@@ -86,13 +82,12 @@ export const resume: Resume = {
       ],
     },
   ],
-
   education: [
     {
       institution: 'Centro Universitário Ritter dos Reis',
       course: 'Tecnólogo em Desenvolvimento de Jogos Digitais',
       startDate: '2026',
-      status: 'Em andamento — 2º semestre',
+      status: 'Em andamento - 2o semestre',
     },
     {
       institution: 'Pontifícia Universidade Católica do Rio Grande do Sul',
@@ -102,20 +97,17 @@ export const resume: Resume = {
       status: 'Não concluído',
     },
   ],
-
-  certificates: [efSetCertificate],
-
-  languages: [
+  certificates: [
     {
-      name: 'Português',
-      level: 'Nativo',
-    },
-    {
-      name: 'Inglês',
-      level: 'Fluente',
+      title: 'EF SET English Certificate',
+      issuer: 'EF SET',
+      credentialUrl: 'https://cert.efset.org/saRMra',
     },
   ],
-
+  languages: [
+    { name: 'Português', level: 'Nativo' },
+    { name: 'Inglês', level: 'Fluente' },
+  ],
   highlights: [
     {
       icon: 'code-xml',
@@ -140,53 +132,238 @@ export const resume: Resume = {
   ],
 };
 
-export const blankResume: Resume = {
+const enUsResume: Resume = {
   personal: {
-    fullName: 'Seu nome completo',
-    professionalTitle: 'Seu cargo ou área profissional',
-    email: 'seuemail@exemplo.com',
-    phone: '(00) 00000-0000',
-    location: 'Sua cidade - Estado',
-    linkedin: 'https://www.linkedin.com/in/seu-perfil',
-    github: 'https://github.com/seu-usuario',
-    profileImage: '/profile-placeholder.svg',
+    ...ptBrResume.personal,
+    location: 'Porto Alegre, RS, Brazil',
   },
   summary: {
-    title: 'Sobre mim',
+    title: 'About me',
     paragraphs: [
-      'Escreva um breve resumo sobre sua experiência, seus principais conhecimentos e seus objetivos profissionais.',
+      'Full Stack Developer with over eight years of experience building web applications, APIs, and enterprise systems.',
+      'Background in financial, legal, and human resources projects, working across backend and frontend responsibilities.',
+      'Hands-on experience with Java, TypeScript, Node.js, NestJS, C#, Angular, React, SvelteKit, and MongoDB.',
     ],
   },
   skills: [
-    { title: 'Competências', skills: [] },
-    { title: 'Ferramentas', skills: [] },
+    { title: 'Languages', skills: ['Java', 'TypeScript', 'JavaScript', 'C#', 'Python', 'PHP', 'SQL'] },
+    { title: 'Backend', skills: ['Node.js', 'NestJS', 'ASP.NET Core', 'REST APIs', 'Swagger / OpenAPI'] },
+    { title: 'Frontend', skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'] },
+    { title: 'Databases', skills: ['MongoDB', 'Oracle'] },
+    { title: 'Tools', skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman'] },
   ],
   experience: [
     {
-      company: 'Nome da empresa',
-      role: 'Cargo ou função',
-      startDate: 'Início',
-      endDate: 'Fim',
-      location: 'Cidade - Estado',
-      description: ['Descreva sua principal atividade, responsabilidade ou resultado.'],
+      company: 'Villela Brasil Bank',
+      role: 'Full Stack Developer',
+      startDate: '2026',
+      endDate: 'Present',
+      location: 'Porto Alegre, RS, Brazil',
+      description: [
+        'Developed and maintained REST APIs for financial-sector systems.',
+        'Built complete web applications, contributing across backend and frontend layers.',
+        'Implemented new features, integrations, and production incident fixes.',
+      ],
+    },
+    {
+      company: 'Mondo Cane Bar',
+      role: 'Owner and Administrator',
+      startDate: '2019',
+      endDate: '2024',
+      location: 'Cidade Baixa, Porto Alegre, RS, Brazil',
+      description: [
+        'Managed a cultural venue focused on literature, cinema, music, and arts, fostering community and cultural expression.',
+        'Led financial, operational, and strategic administration of the business.',
+        'Planned and produced cultural events involving literature, cinema, and music.',
+        'Managed suppliers, purchasing, inventory, and cost control.',
+        'Coordinated daily operations, customer service, and customer relationships.',
+        'Developed initiatives to strengthen community engagement and customer loyalty.',
+      ],
+    },
+    {
+      company: 'South System',
+      role: 'Full Stack Developer',
+      startDate: '2016',
+      endDate: '2019',
+      location: 'Porto Alegre, RS, Brazil',
+      description: [
+        'Developed frontend features using Angular.',
+        'Built backend services with Node.js.',
+        'Performed data mining and processing with Python and Beautiful Soup.',
+        'Refactored internal applications and contributed to image recognition projects.',
+      ],
+    },
+    {
+      company: 'Court of Justice of Rio Grande do Sul',
+      role: 'Database Technician',
+      startDate: '2013',
+      endDate: '2015',
+      location: 'Porto Alegre, RS, Brazil',
+      description: [
+        'Validated data coming from external systems.',
+        'Managed user access through Microsoft Active Directory.',
+        'Provided support for Oracle databases used by the institution.',
+      ],
     },
   ],
   education: [
     {
-      institution: 'Nome da instituição',
-      course: 'Curso ou formação',
-      startDate: 'Ano de início',
-      endDate: 'Ano de conclusão',
-      status: 'Situação do curso',
+      institution: 'Centro Universitário Ritter dos Reis',
+      course: 'Associate Degree in Digital Game Development',
+      startDate: '2026',
+      status: 'In progress - 2nd semester',
+    },
+    {
+      institution: 'Pontifical Catholic University of Rio Grande do Sul',
+      course: "Bachelor's Degree in Computer Science",
+      startDate: '2013',
+      endDate: '2014',
+      status: 'Not completed',
     },
   ],
-  certificates: [],
-  languages: [],
+  certificates: [
+    {
+      title: 'EF SET English Certificate',
+      issuer: 'EF SET',
+      credentialUrl: 'https://cert.efset.org/saRMra',
+    },
+  ],
+  languages: [
+    { name: 'Portuguese', level: 'Native' },
+    { name: 'English', level: 'Fluent' },
+  ],
   highlights: [
     {
+      icon: 'code-xml',
+      title: 'Full Stack Delivery',
+      description: 'Solid experience across backend and frontend, delivering complete integrated solutions.',
+    },
+    {
+      icon: 'shield-check',
+      title: 'Quality & Best Practices',
+      description: 'Focused on clean code, testing, security, performance, and maintainability.',
+    },
+    {
       icon: 'lightbulb',
-      title: 'Seu diferencial',
-      description: 'Descreva uma qualidade, conquista ou diferencial profissional.',
+      title: 'Problem Solving',
+      description:
+        'Critical analysis, incident investigation, and a practical search for efficient solutions.',
+    },
+    {
+      icon: 'users-round',
+      title: 'Team Collaboration',
+      description:
+        'Collaboration in agile and multidisciplinary teams, with clear and objective communication.',
     },
   ],
 };
+
+export const resumesByLocale: Record<ResumeLocale, Resume> = {
+  'pt-BR': ptBrResume,
+  'en-US': enUsResume,
+};
+
+export const resume = resumesByLocale[defaultResumeLocale];
+
+export const blankResumesByLocale: Record<ResumeLocale, Resume> = {
+  'pt-BR': {
+    personal: {
+      fullName: 'Seu nome completo',
+      professionalTitle: 'Seu cargo ou área profissional',
+      email: 'seuemail@exemplo.com',
+      phone: '(00) 00000-0000',
+      location: 'Sua cidade - Estado',
+      linkedin: 'https://www.linkedin.com/in/seu-perfil',
+      github: 'https://github.com/seu-usuario',
+      profileImage: '/profile-placeholder.svg',
+    },
+    summary: {
+      title: 'Sobre mim',
+      paragraphs: [
+        'Escreva um breve resumo sobre sua experiência, seus principais conhecimentos e seus objetivos profissionais.',
+      ],
+    },
+    skills: [
+      { title: 'Competências', skills: [] },
+      { title: 'Ferramentas', skills: [] },
+    ],
+    experience: [
+      {
+        company: 'Nome da empresa',
+        role: 'Cargo ou função',
+        startDate: 'Início',
+        endDate: 'Fim',
+        location: 'Cidade - Estado',
+        description: ['Descreva sua principal atividade, responsabilidade ou resultado.'],
+      },
+    ],
+    education: [
+      {
+        institution: 'Nome da instituição',
+        course: 'Curso ou formação',
+        startDate: 'Ano de início',
+        endDate: 'Ano de conclusão',
+        status: 'Situação do curso',
+      },
+    ],
+    certificates: [],
+    languages: [],
+    highlights: [
+      {
+        icon: 'lightbulb',
+        title: 'Seu diferencial',
+        description: 'Descreva uma qualidade, conquista ou diferencial profissional.',
+      },
+    ],
+  },
+  'en-US': {
+    personal: {
+      fullName: 'Your full name',
+      professionalTitle: 'Your role or professional field',
+      email: 'you@example.com',
+      phone: '+1 000 000 0000',
+      location: 'Your city, state',
+      linkedin: 'https://www.linkedin.com/in/your-profile',
+      github: 'https://github.com/your-user',
+      profileImage: '/profile-placeholder.svg',
+    },
+    summary: {
+      title: 'About me',
+      paragraphs: ['Write a short summary of your experience, core skills, and professional goals.'],
+    },
+    skills: [
+      { title: 'Skills', skills: [] },
+      { title: 'Tools', skills: [] },
+    ],
+    experience: [
+      {
+        company: 'Company name',
+        role: 'Role or position',
+        startDate: 'Start',
+        endDate: 'End',
+        location: 'City, state',
+        description: ['Describe your main responsibility, activity, or result.'],
+      },
+    ],
+    education: [
+      {
+        institution: 'Institution name',
+        course: 'Course or degree',
+        startDate: 'Start year',
+        endDate: 'Completion year',
+        status: 'Course status',
+      },
+    ],
+    certificates: [],
+    languages: [],
+    highlights: [
+      {
+        icon: 'lightbulb',
+        title: 'Your differentiator',
+        description: 'Describe a strength, achievement, or professional differentiator.',
+      },
+    ],
+  },
+};
+
+export const blankResume = blankResumesByLocale[defaultResumeLocale];

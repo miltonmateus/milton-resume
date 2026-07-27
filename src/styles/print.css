@@ -12,6 +12,9 @@
   .resume-actions {
     display: none;
   }
+  .locale-switcher {
+    display: none;
+  }
   .edit-toolbar {
     display: none;
   }

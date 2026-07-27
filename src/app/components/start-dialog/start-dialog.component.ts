@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import type { ElementRef } from '@angular/core';
+
+import type { ResumeUiCopy } from '../../../data/ui-copy.data';
 
 @Component({
   selector: 'app-start-dialog',
@@ -8,6 +10,8 @@ import type { ElementRef } from '@angular/core';
 })
 export class StartDialogComponent {
   @ViewChild('dialog') private dialog?: ElementRef<HTMLDialogElement>;
+
+  @Input({ required: true }) copy!: ResumeUiCopy['dialogs'];
 
   @Output() startExample = new EventEmitter<void>();
   @Output() startBlank = new EventEmitter<void>();

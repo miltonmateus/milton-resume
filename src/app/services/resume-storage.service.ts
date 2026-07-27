@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 
 import { storageKeys } from '../../constants/storage';
-import { resume as exampleResume } from '../../data/resume.data';
-import type { Resume } from '../../types/resume';
+import { defaultResumeLocale, resumesByLocale } from '../../data/resume.data';
+import type { Resume, ResumeLocale } from '../../types/resume';
 
 const currentResumeStorageVersion = 1;
 
 export interface PersistedResumeDocument {
   version: typeof currentResumeStorageVersion;
+  locale: ResumeLocale;
   resume: Resume;
   savedAt: string;
+}
+
+export interface ParsedImportedResume {
+  locale: ResumeLocale;
+  resume: Resume;
 }
 
 @Injectable({ providedIn: 'root' })
 export class ResumeStorageService {
   readonly exportFileName = 'milton-resume.json';
 
-  load(): Resume {
-    const fallbackResume = this.cloneResume(exampleResume);
-    const savedResume = this.getStoredValue(storageKeys.customizedResumeData);
+  load(locale: ResumeLocale): Resume {
+    const fallbackResume = this.cloneResume(resumesByLocale[locale]);
+    const savedResume = this.getStoredValue(this.resumeStorageKey(locale));
     if (!savedResume) return fallbackResume;
 
     try {
@@ -29,28 +35,39 @@ export class ResumeStorageService {
     }
   }
 
-  hasSavedResume(): boolean {
-    return this.getStoredValue(storageKeys.customizedResumeData) !== null;
+  loadLocale(): ResumeLocale {
+    const savedLocale = this.getStoredValue(storageKeys.resumeLocale);
+    return this.isResumeLocale(savedLocale) ? savedLocale : defaultResumeLocale;
   }
 
-  save(resume: Resume): boolean {
+  saveLocale(locale: ResumeLocale): void {
+    this.setStoredValue(storageKeys.resumeLocale, locale);
+  }
+
+  hasSavedResume(locale: ResumeLocale): boolean {
+    return this.getStoredValue(this.resumeStorageKey(locale)) !== null;
+  }
+
+  save(locale: ResumeLocale, resume: Resume): boolean {
     const persistedDocument: PersistedResumeDocument = {
       version: currentResumeStorageVersion,
+      locale,
       resume,
       savedAt: new Date().toISOString(),
     };
 
-    return this.setStoredValue(storageKeys.customizedResumeData, JSON.stringify(persistedDocument));
+    return this.setStoredValue(this.resumeStorageKey(locale), JSON.stringify(persistedDocument));
   }
 
-  clear(): void {
-    this.removeStoredValue(storageKeys.customizedResumeData);
+  clear(locale: ResumeLocale): void {
+    this.removeStoredValue(this.resumeStorageKey(locale));
     this.removeStoredValue(storageKeys.customizedResumeMarkup);
   }
 
-  exportResume(resume: Resume): void {
+  exportResume(locale: ResumeLocale, resume: Resume): void {
     const persistedDocument: PersistedResumeDocument = {
       version: currentResumeStorageVersion,
+      locale,
       resume,
       savedAt: new Date().toISOString(),
     };
@@ -64,10 +81,15 @@ export class ResumeStorageService {
     URL.revokeObjectURL(url);
   }
 
-  parseImportedResume(value: string): Resume {
-    const fallbackResume = this.cloneResume(exampleResume);
+  parseImportedResume(value: string): ParsedImportedResume {
     const parsedValue: unknown = JSON.parse(value);
-    return this.normalizeResume(this.readResumeFromDocument(parsedValue), fallbackResume);
+    const locale = this.readLocaleFromDocument(parsedValue);
+    const fallbackResume = this.cloneResume(resumesByLocale[locale]);
+
+    return {
+      locale,
+      resume: this.normalizeResume(this.readResumeFromDocument(parsedValue), fallbackResume),
+    };
   }
 
   cloneResume(source: Resume): Resume {
@@ -82,6 +104,12 @@ export class ResumeStorageService {
     }
 
     return value;
+  }
+
+  private readLocaleFromDocument(value: unknown): ResumeLocale {
+    if (!this.isRecord(value)) return defaultResumeLocale;
+
+    return this.isResumeLocale(value.locale) ? value.locale : defaultResumeLocale;
   }
 
   private normalizeResume(value: unknown, fallback: Resume): Resume {
@@ -114,6 +142,14 @@ export class ResumeStorageService {
 
   private isRecord(value: unknown): value is Record<string, unknown> {
     return value !== null && typeof value === 'object' && !Array.isArray(value);
+  }
+
+  private isResumeLocale(value: unknown): value is ResumeLocale {
+    return value === 'pt-BR' || value === 'en-US';
+  }
+
+  private resumeStorageKey(locale: ResumeLocale): string {
+    return `${storageKeys.customizedResumeData}:${locale}`;
   }
 
   private getStoredValue(key: string): string | null {

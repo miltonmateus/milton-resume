@@ -15,17 +15,19 @@
   </section>
 
   <section class="experience content-section">
-    <h2><i class="section-icon" data-lucide="pickaxe" aria-hidden="true"></i> Experiência</h2>
+    <h2>
+      <i class="section-icon" data-lucide="pickaxe" aria-hidden="true"></i> {{ copy.sections.experience }}
+    </h2>
     <div class="timeline">
       <article class="experience-item" *ngFor="let item of resume.experience; let index = index">
         <app-item-actions
           *ngIf="isEditing"
-          moveUpLabel="Mover experiência para cima"
-          moveDownLabel="Mover experiência para baixo"
-          removeLabel="Remover experiência"
-          moveUpHint="Move esta experiência uma posição para cima."
-          moveDownHint="Move esta experiência uma posição para baixo."
-          removeHint="Remove esta experiência do currículo."
+          [moveUpLabel]="copy.editing.moveExperienceUp"
+          [moveDownLabel]="copy.editing.moveExperienceDown"
+          [removeLabel]="copy.editing.removeExperience"
+          [moveUpHint]="copy.editing.moveExperienceUp"
+          [moveDownHint]="copy.editing.moveExperienceDown"
+          [removeHint]="copy.editing.removeExperience"
           [disableMoveUp]="index === 0"
           [disableMoveDown]="index === resume.experience.length - 1"
           (moveUp)="moveExperience(index, -1)"
@@ -82,22 +84,25 @@
     </div>
     <button *ngIf="isEditing" class="add-section" type="button" (click)="addExperienceRequested.emit()">
       <i data-lucide="plus" aria-hidden="true"></i>
-      Adicionar experiência
+      {{ copy.editing.addExperience }}
     </button>
   </section>
 
   <section class="education content-section">
-    <h2><i class="section-icon" data-lucide="graduation-cap" aria-hidden="true"></i> Formação</h2>
+    <h2>
+      <i class="section-icon" data-lucide="graduation-cap" aria-hidden="true"></i>
+      {{ copy.sections.education }}
+    </h2>
     <div class="education-grid">
       <article class="education-item" *ngFor="let item of resume.education; let index = index">
         <app-item-actions
           *ngIf="isEditing"
-          moveUpLabel="Mover formação para cima"
-          moveDownLabel="Mover formação para baixo"
-          removeLabel="Remover formação"
-          moveUpHint="Move esta formação uma posição para cima."
-          moveDownHint="Move esta formação uma posição para baixo."
-          removeHint="Remove esta formação do currículo."
+          [moveUpLabel]="copy.editing.moveEducationUp"
+          [moveDownLabel]="copy.editing.moveEducationDown"
+          [removeLabel]="copy.editing.removeEducation"
+          [moveUpHint]="copy.editing.moveEducationUp"
+          [moveDownHint]="copy.editing.moveEducationDown"
+          [removeHint]="copy.editing.removeEducation"
           [disableMoveUp]="index === 0"
           [disableMoveDown]="index === resume.education.length - 1"
           (moveUp)="moveEducation(index, -1)"
@@ -136,22 +141,24 @@
     </div>
     <button *ngIf="isEditing" class="add-section" type="button" (click)="addEducation()">
       <i data-lucide="plus" aria-hidden="true"></i>
-      Adicionar formação
+      {{ copy.editing.addEducation }}
     </button>
   </section>
 
   <section class="certificates content-section" *ngIf="resume.certificates.length || isEditing">
-    <h2><i class="section-icon" data-lucide="award" aria-hidden="true"></i> Certificados</h2>
+    <h2>
+      <i class="section-icon" data-lucide="award" aria-hidden="true"></i> {{ copy.sections.certificates }}
+    </h2>
     <div class="certificates-grid">
       <article class="certificate-item" *ngFor="let item of resume.certificates; let index = index">
         <app-item-actions
           *ngIf="isEditing"
-          moveUpLabel="Mover certificado para cima"
-          moveDownLabel="Mover certificado para baixo"
-          removeLabel="Remover certificado"
-          moveUpHint="Move este certificado uma posição para cima."
-          moveDownHint="Move este certificado uma posição para baixo."
-          removeHint="Remove este certificado do currículo."
+          [moveUpLabel]="copy.editing.moveCertificateUp"
+          [moveDownLabel]="copy.editing.moveCertificateDown"
+          [removeLabel]="copy.editing.removeCertificate"
+          [moveUpHint]="copy.editing.moveCertificateUp"
+          [moveDownHint]="copy.editing.moveCertificateDown"
+          [removeHint]="copy.editing.removeCertificate"
           [disableMoveUp]="index === 0"
           [disableMoveDown]="index === resume.certificates.length - 1"
           (moveUp)="moveCertificate(index, -1)"
@@ -179,13 +186,13 @@
           rel="noreferrer"
           [attr.aria-disabled]="isEditing"
           (click)="preventLinkWhenEditing($event)"
-          >Ver credencial</a
+          >{{ copy.links.credential }}</a
         >
       </article>
     </div>
     <button *ngIf="isEditing" class="add-section" type="button" (click)="addCertificate()">
       <i data-lucide="plus" aria-hidden="true"></i>
-      Adicionar certificado
+      {{ copy.editing.addCertificate }}
     </button>
   </section>
 </div>

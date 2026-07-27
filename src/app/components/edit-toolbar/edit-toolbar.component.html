@@ -1,28 +1,28 @@
 <div class="edit-toolbar" [hidden]="!isEditing">
   <p>
-    Edite os textos diretamente no currículo. As alterações são salvas automaticamente neste navegador.
+    {{ copy.instructions }}
     <span aria-live="polite">{{ saveStatus }}</span>
   </p>
   <button type="button" (click)="openPhotoPicker()">
     <i data-lucide="image-up" aria-hidden="true"></i>
-    Trocar foto
+    {{ copy.changePhoto }}
   </button>
   <label class="change-photo">
     <i data-lucide="upload" aria-hidden="true"></i>
-    Importar JSON
+    {{ copy.importJson }}
     <input class="photo-input" type="file" accept="application/json,.json" (change)="importResume($event)" />
   </label>
   <button type="button" (click)="exportResume.emit()">
     <i data-lucide="download" aria-hidden="true"></i>
-    Exportar JSON
+    {{ copy.exportJson }}
   </button>
   <button class="back-to-original" type="button" (click)="resetResume.emit()">
     <i data-lucide="rotate-ccw" aria-hidden="true"></i>
-    Restaurar
+    {{ copy.restore }}
   </button>
   <button class="finish-editing" type="button" (click)="finishEditing.emit()">
     <i data-lucide="check" aria-hidden="true"></i>
-    Concluir
+    {{ copy.finish }}
   </button>
   <input
     #photoInput

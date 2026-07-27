@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import type { ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import type { ResumeUiCopy } from '../../../data/ui-copy.data';
 import type { Experience, ResumeIconName } from '../../../types/resume';
 
 interface ExperienceForm {
@@ -22,6 +23,9 @@ interface ExperienceForm {
 })
 export class ExperienceDialogComponent {
   @ViewChild('dialog') private dialog?: ElementRef<HTMLDialogElement>;
+
+  @Input({ required: true }) copy!: ResumeUiCopy['dialogs'];
+  @Input({ required: true }) placeholders!: ResumeUiCopy['placeholders'];
 
   @Output() experienceCreated = new EventEmitter<Experience>();
 
@@ -49,7 +53,7 @@ export class ExperienceDialogComponent {
 
   addExperience(): void {
     if (!this.experienceForm.current && this.experienceForm.endDate < this.experienceForm.startDate) {
-      window.alert('A data final deve ser posterior à data inicial.');
+      window.alert(this.placeholders.invalidExperienceDate);
       return;
     }
 
@@ -59,8 +63,10 @@ export class ExperienceDialogComponent {
       location: this.experienceForm.location.trim(),
       icon: this.experienceForm.icon,
       startDate: this.formatMonth(this.experienceForm.startDate),
-      endDate: this.experienceForm.current ? 'Atual' : this.formatMonth(this.experienceForm.endDate),
-      description: ['Descreva sua principal atividade ou resultado.'],
+      endDate: this.experienceForm.current
+        ? this.placeholders.currentExperienceEnd
+        : this.formatMonth(this.experienceForm.endDate),
+      description: [this.placeholders.experienceDescription],
     });
     this.close();
   }

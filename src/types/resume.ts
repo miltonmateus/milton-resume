@@ -67,6 +67,8 @@ export interface Resume {
   highlights: Highlight[];
 }
 
+export type ResumeLocale = 'pt-BR' | 'en-US';
+
 export type ResumeIconName =
   | 'building-2'
   | 'code-xml'

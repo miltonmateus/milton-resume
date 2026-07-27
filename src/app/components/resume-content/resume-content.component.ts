@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import type { ResumeUiCopy } from '../../../data/ui-copy.data';
 import type { Certificate, Education, Experience, Resume } from '../../../types/resume';
 import { ItemActionsComponent } from '../item-actions/item-actions.component';
 
@@ -12,6 +13,7 @@ import { ItemActionsComponent } from '../item-actions/item-actions.component';
 export class ResumeContentComponent {
   @Input({ required: true }) resume!: Resume;
   @Input({ required: true }) isEditing!: boolean;
+  @Input({ required: true }) copy!: ResumeUiCopy;
 
   @Output() changed = new EventEmitter<void>();
   @Output() addExperienceRequested = new EventEmitter<void>();
@@ -57,20 +59,20 @@ export class ResumeContentComponent {
 
   addEducation(): void {
     this.resume.education.push({
-      institution: 'Nome da instituição',
-      course: 'Curso ou formação',
-      startDate: 'Ano de início',
-      endDate: 'Ano de conclusão',
-      status: 'Situação do curso',
+      institution: this.copy.placeholders.educationInstitution,
+      course: this.copy.placeholders.educationCourse,
+      startDate: this.copy.placeholders.educationStart,
+      endDate: this.copy.placeholders.educationEnd,
+      status: this.copy.placeholders.educationStatus,
     });
     this.changed.emit();
   }
 
   addCertificate(): void {
     this.resume.certificates.push({
-      title: 'Nome do certificado',
-      issuer: 'Instituição emissora',
-      date: 'Ano de emissão',
+      title: this.copy.placeholders.certificateTitle,
+      issuer: this.copy.placeholders.certificateIssuer,
+      date: this.copy.placeholders.certificateDate,
     });
     this.changed.emit();
   }

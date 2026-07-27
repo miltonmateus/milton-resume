@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 import type { ElementRef } from '@angular/core';
 
 import { allowedProfileImageTypes, maxProfileImageSizeInBytes } from '../../../constants/editing';
+import type { ResumeUiCopy } from '../../../data/ui-copy.data';
 
 @Component({
   selector: 'app-edit-toolbar',
@@ -12,6 +13,7 @@ export class EditToolbarComponent {
   @ViewChild('photoInput') private photoInput?: ElementRef<HTMLInputElement>;
 
   @Input({ required: true }) isEditing!: boolean;
+  @Input({ required: true }) copy!: ResumeUiCopy['toolbar'];
   @Input() saveStatus = '';
 
   @Output() finishEditing = new EventEmitter<void>();

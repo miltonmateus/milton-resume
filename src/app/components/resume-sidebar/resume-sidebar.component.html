@@ -26,7 +26,9 @@
     <div class="title-rule"></div>
 
     <section class="contact sidebar-section">
-      <h2><i class="section-icon" data-lucide="contact" aria-hidden="true"></i> Contato</h2>
+      <h2>
+        <i class="section-icon" data-lucide="contact" aria-hidden="true"></i> {{ copy.sections.contact }}
+      </h2>
       <ul>
         <li>
           <i data-lucide="mail" aria-hidden="true"></i>
@@ -94,7 +96,7 @@
   </header>
 
   <section class="skills sidebar-section">
-    <h2><i class="section-icon" data-lucide="blocks" aria-hidden="true"></i> Competências</h2>
+    <h2><i class="section-icon" data-lucide="blocks" aria-hidden="true"></i> {{ copy.sections.skills }}</h2>
     <div class="skill-group" *ngFor="let group of resume.skills">
       <h3><i data-lucide="braces" aria-hidden="true"></i> {{ group.title }}</h3>
       <ul>
@@ -105,7 +107,7 @@
             (input)="updateArrayText(group.skills, index, $event)"
             >{{ skill }}</span
           >
-          <app-hint *ngIf="isEditing" text="Remove esta competência do currículo.">
+          <app-hint *ngIf="isEditing" [text]="copy.editing.removeSkillHint">
             <button
               class="chip-remove"
               type="button"
@@ -119,21 +121,23 @@
       </ul>
       <button *ngIf="isEditing" class="add-skill" type="button" (click)="addSkill(group)">
         <i data-lucide="plus" aria-hidden="true"></i>
-        Adicionar competência
+        {{ copy.editing.addSkill }}
       </button>
     </div>
   </section>
 
   <section class="languages sidebar-section">
-    <h2><i class="section-icon" data-lucide="globe-2" aria-hidden="true"></i> Idiomas</h2>
+    <h2>
+      <i class="section-icon" data-lucide="globe-2" aria-hidden="true"></i> {{ copy.sections.languages }}
+    </h2>
     <ul>
       <li class="language-item" *ngFor="let language of resume.languages; let index = index">
         <app-item-actions
           *ngIf="isEditing"
           [compact]="true"
           [showMove]="false"
-          removeLabel="Remover idioma"
-          removeHint="Remove este idioma do currículo."
+          [removeLabel]="copy.editing.removeLanguageLabel"
+          [removeHint]="copy.editing.removeLanguageHint"
           (remove)="removeLanguage(index)"
         />
         <div>
@@ -157,7 +161,7 @@
     </ul>
     <button *ngIf="isEditing" class="add-skill" type="button" (click)="addLanguage()">
       <i data-lucide="plus" aria-hidden="true"></i>
-      Adicionar idioma
+      {{ copy.editing.addLanguage }}
     </button>
   </section>
 </aside>

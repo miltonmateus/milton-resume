@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import type { ResumeUiCopy } from '../../../data/ui-copy.data';
 import type { Highlight } from '../../../types/resume';
 import { ItemActionsComponent } from '../item-actions/item-actions.component';
 
@@ -12,6 +13,7 @@ import { ItemActionsComponent } from '../item-actions/item-actions.component';
 export class ResumeHighlightsComponent {
   @Input({ required: true }) highlights!: Highlight[];
   @Input({ required: true }) isEditing!: boolean;
+  @Input({ required: true }) copy!: ResumeUiCopy;
 
   @Output() changed = new EventEmitter<void>();
 
@@ -24,8 +26,8 @@ export class ResumeHighlightsComponent {
   addHighlight(): void {
     this.highlights.push({
       icon: 'lightbulb',
-      title: 'Novo destaque',
-      description: 'Descreva uma qualidade, conquista ou diferencial profissional.',
+      title: this.copy.placeholders.highlightTitle,
+      description: this.copy.placeholders.highlightDescription,
     });
     this.changed.emit();
   }

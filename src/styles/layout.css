@@ -6,6 +6,43 @@
   display: flex;
   gap: 10px;
 }
+
+.locale-switcher {
+  position: fixed;
+  z-index: 11;
+  top: 18px;
+  right: 24px;
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid #cfd8e5;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 96%);
+  box-shadow: 0 10px 24px rgb(7 28 52 / 16%);
+  backdrop-filter: blur(10px);
+}
+.locale-switcher button {
+  min-width: 58px;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 0;
+  color: #405a73;
+  background: transparent;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.locale-switcher button + button {
+  border-left: 1px solid #dbe2eb;
+}
+.locale-switcher button:hover {
+  color: #087d8f;
+  background: #f1fbfc;
+}
+.locale-switcher-active {
+  color: #fff !important;
+  background: #087d8f !important;
+}
 .download-pdf,
 .layout-picker,
 .back-to-original,
@@ -1639,5 +1676,9 @@ app-resume-highlights {
   }
   .edit-toolbar p {
     flex-basis: 100%;
+  }
+  .locale-switcher {
+    top: 8px;
+    right: 8px;
   }
 }

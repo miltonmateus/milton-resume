@@ -1,7 +1,10 @@
+<app-locale-switcher [locale]="currentLocale" (localeChange)="changeLocale($event)" />
+
 <app-resume-actions
   [layout]="layout"
   [isEditing]="isEditing"
   [hasCustomizedResume]="hasCustomizedResume"
+  [copy]="copy.actions"
   (layoutChange)="setLayout($event)"
   (downloadPdf)="printResume()"
   (customize)="openStartDialog()"
@@ -11,6 +14,7 @@
 <app-edit-toolbar
   [isEditing]="isEditing"
   [saveStatus]="saveStatus"
+  [copy]="copy.toolbar"
   (finishEditing)="finishEditing()"
   (resetResume)="resetResume()"
   (exportResume)="exportResume()"
@@ -18,14 +22,25 @@
   (photoSelected)="updatePhoto($event)"
 />
 
-<app-start-dialog #startDialog (startExample)="startFromExample()" (startBlank)="startBlank()" />
+<app-start-dialog
+  #startDialog
+  [copy]="copy.dialogs"
+  (startExample)="startFromExample()"
+  (startBlank)="startBlank()"
+/>
 
-<app-experience-dialog #experienceDialog (experienceCreated)="addExperience($event)" />
+<app-experience-dialog
+  #experienceDialog
+  [copy]="copy.dialogs"
+  [placeholders]="copy.placeholders"
+  (experienceCreated)="addExperience($event)"
+/>
 
 <main class="resume" [class.resume--toolbar-visible]="isEditing" [ngClass]="resumeClasses">
   <app-resume-sidebar
     [resume]="currentResume"
     [isEditing]="isEditing"
+    [copy]="copy"
     (changed)="saveResume()"
     (changePhoto)="openPhotoPicker()"
   />
@@ -33,6 +48,7 @@
   <app-resume-content
     [resume]="currentResume"
     [isEditing]="isEditing"
+    [copy]="copy"
     (changed)="saveResume()"
     (addExperienceRequested)="openExperienceDialog()"
   />
@@ -40,6 +56,7 @@
   <app-resume-highlights
     [highlights]="currentResume.highlights"
     [isEditing]="isEditing"
+    [copy]="copy"
     (changed)="saveResume()"
   />
 </main>
