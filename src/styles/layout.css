@@ -8,10 +8,10 @@
 }
 
 .locale-switcher {
-  position: fixed;
+  position: absolute;
   z-index: 11;
-  top: 18px;
-  right: 24px;
+  top: 0;
+  left: calc(100% + 12px);
   display: inline-flex;
   overflow: hidden;
   border: 1px solid #cfd8e5;
@@ -552,12 +552,23 @@ app-item-actions {
   }
 }
 
-.resume {
-  display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
+.resume-shell {
+  position: relative;
   width: min(1120px, 100% - 36px);
   min-height: 100vh;
   margin: 24px auto;
+}
+
+.resume-shell--toolbar-visible {
+  margin-top: 116px;
+}
+
+.resume {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
   overflow: hidden;
   background: var(--paper);
   border-radius: 0;
@@ -565,7 +576,7 @@ app-item-actions {
 }
 
 .resume--toolbar-visible {
-  margin-top: 116px;
+  margin-top: 0;
 }
 
 app-resume-sidebar,
@@ -1565,10 +1576,12 @@ app-resume-highlights {
 }
 
 @media (max-width: 820px) {
-  .resume {
-    grid-template-columns: 1fr;
+  .resume-shell {
     width: min(620px, 100%);
     margin: 0 auto;
+  }
+  .resume {
+    grid-template-columns: 1fr;
     border-radius: 0;
   }
   .resume--executive,
@@ -1680,5 +1693,14 @@ app-resume-highlights {
   .locale-switcher {
     top: 8px;
     right: 8px;
+    left: auto;
+  }
+}
+
+@media (max-width: 1380px) {
+  .locale-switcher {
+    top: 8px;
+    right: 8px;
+    left: auto;
   }
 }

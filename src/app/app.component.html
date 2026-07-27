@@ -1,5 +1,3 @@
-<app-locale-switcher [locale]="currentLocale" (localeChange)="changeLocale($event)" />
-
 <app-resume-actions
   [layout]="layout"
   [isEditing]="isEditing"
@@ -36,27 +34,31 @@
   (experienceCreated)="addExperience($event)"
 />
 
-<main class="resume" [class.resume--toolbar-visible]="isEditing" [ngClass]="resumeClasses">
-  <app-resume-sidebar
-    [resume]="currentResume"
-    [isEditing]="isEditing"
-    [copy]="copy"
-    (changed)="saveResume()"
-    (changePhoto)="openPhotoPicker()"
-  />
+<div class="resume-shell" [class.resume-shell--toolbar-visible]="isEditing">
+  <app-locale-switcher [locale]="currentLocale" (localeChange)="changeLocale($event)" />
 
-  <app-resume-content
-    [resume]="currentResume"
-    [isEditing]="isEditing"
-    [copy]="copy"
-    (changed)="saveResume()"
-    (addExperienceRequested)="openExperienceDialog()"
-  />
+  <main class="resume" [class.resume--toolbar-visible]="isEditing" [ngClass]="resumeClasses">
+    <app-resume-sidebar
+      [resume]="currentResume"
+      [isEditing]="isEditing"
+      [copy]="copy"
+      (changed)="saveResume()"
+      (changePhoto)="openPhotoPicker()"
+    />
 
-  <app-resume-highlights
-    [highlights]="currentResume.highlights"
-    [isEditing]="isEditing"
-    [copy]="copy"
-    (changed)="saveResume()"
-  />
-</main>
+    <app-resume-content
+      [resume]="currentResume"
+      [isEditing]="isEditing"
+      [copy]="copy"
+      (changed)="saveResume()"
+      (addExperienceRequested)="openExperienceDialog()"
+    />
+
+    <app-resume-highlights
+      [highlights]="currentResume.highlights"
+      [isEditing]="isEditing"
+      [copy]="copy"
+      (changed)="saveResume()"
+    />
+  </main>
+</div>

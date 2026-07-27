@@ -46,6 +46,11 @@
     border-radius: 0;
     box-shadow: none;
   }
+  .resume-shell {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+  }
   .sidebar,
   .content {
     min-height: 0;
