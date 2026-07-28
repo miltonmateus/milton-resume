@@ -12,7 +12,7 @@
   <strong>Português</strong> · <a href="README.md">English</a>
 </p>
 
-## Sobre o Projeto
+## Sobre o projeto
 
 Este projeto nasceu para hospedar o currículo de Milton Mateus Alves Teixeira Filho em uma experiência web limpa, responsiva e fácil de manter.
 
