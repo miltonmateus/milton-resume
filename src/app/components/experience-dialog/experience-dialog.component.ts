@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import type { OnChanges } from '@angular/core';
 import type { ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -21,7 +22,7 @@ interface ExperienceForm {
   imports: [CommonModule, FormsModule],
   templateUrl: './experience-dialog.component.html',
 })
-export class ExperienceDialogComponent {
+export class ExperienceDialogComponent implements OnChanges {
   @ViewChild('dialog') private dialog?: ElementRef<HTMLDialogElement>;
 
   @Input({ required: true }) copy!: ResumeUiCopy['dialogs'];
@@ -29,12 +30,13 @@ export class ExperienceDialogComponent {
 
   @Output() experienceCreated = new EventEmitter<Experience>();
 
+  experienceIconOptions: Array<{ value: ResumeIconName; label: string }> = [];
   experienceForm = this.createBlankExperienceForm();
 
-  get experienceIconOptions(): Array<{ value: ResumeIconName; label: string }> {
+  ngOnChanges(): void {
     const labels = this.copy.experienceIconLabels;
 
-    return [
+    this.experienceIconOptions = [
       { value: 'building-2', label: labels.company },
       { value: 'code-xml', label: labels.development },
       { value: 'server-cog', label: labels.backend },

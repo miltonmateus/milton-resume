@@ -71,15 +71,6 @@ export class AppComponent implements AfterViewChecked {
     refreshResumeIcons();
   }
 
-  get resumeClasses(): Record<string, boolean> {
-    return {
-      'resume--editing': this.isEditing,
-      'resume--executive': this.layout === 'executive',
-      'resume--dark': this.layout === 'dark',
-      'resume--studio': this.layout === 'studio',
-    };
-  }
-
   setLayout(layout: ResumeLayout): void {
     this.layout = layout;
     this.resumeLayout.save(layout);

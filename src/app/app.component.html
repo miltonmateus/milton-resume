@@ -34,7 +34,6 @@
 
 <div class="resume-shell" [class.resume-shell--toolbar-visible]="isEditing">
   <div class="mobile-topbar" *ngIf="!isEditing">
-    <img class="mobile-brand-logo" src="/favicon.png?v=2" alt="Milton Resume" />
     <app-locale-switcher [locale]="currentLocale" (localeChange)="changeLocale($event)" />
   </div>
 
@@ -49,7 +48,14 @@
     (restoreOriginal)="restoreOriginal()"
   />
 
-  <main class="resume" [class.resume--toolbar-visible]="isEditing" [ngClass]="resumeClasses">
+  <main
+    class="resume"
+    [class.resume--toolbar-visible]="isEditing"
+    [class.resume--editing]="isEditing"
+    [class.resume--executive]="layout === 'executive'"
+    [class.resume--dark]="layout === 'dark'"
+    [class.resume--studio]="layout === 'studio'"
+  >
     <app-resume-sidebar
       [resume]="currentResume"
       [isEditing]="isEditing"

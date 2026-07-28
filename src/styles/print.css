@@ -104,12 +104,30 @@
   .content-section {
     margin-bottom: 5mm;
   }
+  .education.content-section {
+    margin-bottom: 7mm;
+  }
+  .content-section,
+  .education-item,
+  .certificate-item,
+  .project-item,
+  .highlight-item,
+  .skill-group,
+  .language-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .content-section > h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
   .summary p {
     font-size: 0.94rem;
   }
   .experience-item {
     margin-bottom: 4mm;
     break-inside: avoid;
+    page-break-inside: avoid;
   }
   .experience-heading {
     margin-bottom: 3mm;
@@ -143,9 +161,18 @@
   .certificates-grid {
     gap: 3mm 5mm;
   }
+  .certificates.content-section,
+  .projects.content-section {
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    vertical-align: top;
+  }
   .certificate-item {
     min-height: 0;
     break-inside: avoid;
+    page-break-inside: avoid;
   }
   .projects-grid {
     gap: 3mm;
@@ -153,6 +180,7 @@
   .project-item {
     padding: 0 0 0 5mm;
     break-inside: avoid;
+    page-break-inside: avoid;
   }
   .project-description {
     font-size: 0.84rem;

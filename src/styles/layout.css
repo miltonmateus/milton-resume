@@ -49,9 +49,6 @@
   color: #fff !important;
   background: #087d8f !important;
 }
-.mobile-brand-logo {
-  display: none;
-}
 .download-pdf,
 .layout-picker,
 .back-to-original,
@@ -2108,17 +2105,8 @@ app-resume-highlights {
   .mobile-topbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    justify-content: flex-end;
     margin: 0 0 10px;
-  }
-  .mobile-brand-logo {
-    display: block;
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    background: linear-gradient(145deg, #06182c, #092945);
-    box-shadow: 0 10px 24px rgb(7 28 52 / 24%);
   }
   .locale-switcher {
     position: static;
