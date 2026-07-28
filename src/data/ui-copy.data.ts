@@ -23,6 +23,9 @@ export interface ResumeUiCopy {
     exportJson: string;
     restore: string;
     finish: string;
+    invalidImageType: string;
+    invalidImageSize: string;
+    invalidJsonFile: string;
   };
   dialogs: {
     close: string;
@@ -45,6 +48,16 @@ export interface ResumeUiCopy {
     current: string;
     cancel: string;
     add: string;
+    experienceIconLabels: {
+      company: string;
+      development: string;
+      backend: string;
+      frontend: string;
+      data: string;
+      team: string;
+      quality: string;
+      operations: string;
+    };
   };
   sections: {
     contact: string;
@@ -64,6 +77,7 @@ export interface ResumeUiCopy {
     addHighlight: string;
     addSkill: string;
     addLanguage: string;
+    removeSkillLabel: string;
     removeSkillHint: string;
     removeLanguageLabel: string;
     removeLanguageHint: string;
@@ -88,6 +102,7 @@ export interface ResumeUiCopy {
     project: string;
   };
   messages: {
+    restoreTitle: string;
     restoreConfirm: string;
     importError: string;
     restored: string;
@@ -143,11 +158,14 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       instructions:
         'Edite os textos diretamente no currículo. As alterações são salvas automaticamente neste navegador.',
       changePhoto: 'Trocar foto',
-      backup: 'Backup',
+      backup: 'Importar/Exportar JSON',
       importJson: 'Importar JSON',
       exportJson: 'Exportar JSON',
       restore: 'Restaurar',
       finish: 'Concluir',
+      invalidImageType: 'Escolha uma imagem em PNG, JPG ou WebP.',
+      invalidImageSize: 'Escolha uma imagem com até 2 MB.',
+      invalidJsonFile: 'Escolha um arquivo JSON exportado pelo currículo.',
     },
     dialogs: {
       close: 'Fechar',
@@ -172,6 +190,16 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       current: 'Trabalho aqui atualmente',
       cancel: 'Cancelar',
       add: 'Adicionar',
+      experienceIconLabels: {
+        company: 'Empresa',
+        development: 'Desenvolvimento',
+        backend: 'Backend',
+        frontend: 'Frontend',
+        data: 'Dados',
+        team: 'Equipe',
+        quality: 'Qualidade',
+        operations: 'Operações',
+      },
     },
     sections: {
       contact: 'Contato',
@@ -191,6 +219,7 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       addHighlight: 'Adicionar destaque',
       addSkill: 'Adicionar competência',
       addLanguage: 'Adicionar idioma',
+      removeSkillLabel: 'Remover competência',
       removeSkillHint: 'Remove esta competência do currículo.',
       removeLanguageLabel: 'Remover idioma',
       removeLanguageHint: 'Remove este idioma do currículo.',
@@ -215,7 +244,8 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       project: 'Ver produto',
     },
     messages: {
-      restoreConfirm: 'Restaurar todo o conteúdo original do currículo?',
+      restoreTitle: 'Descartar alterações?',
+      restoreConfirm: 'Isso limpa as edições salvas neste navegador e recarrega o modelo atual do currículo.',
       importError: 'Não foi possível importar este arquivo JSON.',
       restored: 'Conteúdo original restaurado.',
       saved: 'Alterações salvas.',
@@ -268,11 +298,14 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
     toolbar: {
       instructions: 'Edit the resume text directly. Changes are saved automatically in this browser.',
       changePhoto: 'Change photo',
-      backup: 'Backup',
+      backup: 'Import/Export JSON',
       importJson: 'Import JSON',
       exportJson: 'Export JSON',
       restore: 'Restore',
       finish: 'Done',
+      invalidImageType: 'Choose a PNG, JPG, or WebP image.',
+      invalidImageSize: 'Choose an image up to 2 MB.',
+      invalidJsonFile: 'Choose a JSON file exported by the resume.',
     },
     dialogs: {
       close: 'Close',
@@ -296,6 +329,16 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       current: 'I currently work here',
       cancel: 'Cancel',
       add: 'Add',
+      experienceIconLabels: {
+        company: 'Company',
+        development: 'Development',
+        backend: 'Backend',
+        frontend: 'Frontend',
+        data: 'Data',
+        team: 'Team',
+        quality: 'Quality',
+        operations: 'Operations',
+      },
     },
     sections: {
       contact: 'Contact',
@@ -315,6 +358,7 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       addHighlight: 'Add highlight',
       addSkill: 'Add skill',
       addLanguage: 'Add language',
+      removeSkillLabel: 'Remove skill',
       removeSkillHint: 'Remove this skill from the resume.',
       removeLanguageLabel: 'Remove language',
       removeLanguageHint: 'Remove this language from the resume.',
@@ -339,7 +383,8 @@ export const uiCopyByLocale: Record<ResumeLocale, ResumeUiCopy> = {
       project: 'View product',
     },
     messages: {
-      restoreConfirm: 'Restore all original resume content?',
+      restoreTitle: 'Discard changes?',
+      restoreConfirm: 'This clears the edits saved in this browser and reloads the current resume template.',
       importError: 'Could not import this JSON file.',
       restored: 'Original content restored.',
       saved: 'Changes saved.',

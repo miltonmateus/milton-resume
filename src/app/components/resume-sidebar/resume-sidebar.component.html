@@ -99,7 +99,7 @@
             <button
               class="chip-remove"
               type="button"
-              aria-label="Remover competência"
+              [attr.aria-label]="copy.editing.removeSkillLabel"
               (click)="removeSkill(group, index)"
             >
               <i data-lucide="trash-2" aria-hidden="true"></i>

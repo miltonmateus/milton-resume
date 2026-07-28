@@ -4,6 +4,7 @@ import type { AfterViewChecked } from '@angular/core';
 
 import { refreshResumeIcons } from '../features/icons/resume-icons';
 import type { Experience, Resume } from '../types/resume';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { EditToolbarComponent } from './components/edit-toolbar/edit-toolbar.component';
 import { ExperienceDialogComponent } from './components/experience-dialog/experience-dialog.component';
 import { LocaleSwitcherComponent } from './components/locale-switcher/locale-switcher.component';
@@ -22,6 +23,7 @@ import type { ResumeLocale } from '../types/resume';
   standalone: true,
   imports: [
     CommonModule,
+    ConfirmDialogComponent,
     EditToolbarComponent,
     ExperienceDialogComponent,
     LocaleSwitcherComponent,
@@ -38,6 +40,7 @@ export class AppComponent implements AfterViewChecked {
   private readonly resumeLayout = inject(ResumeLayoutService);
 
   @ViewChild('startDialog') private startDialog?: StartDialogComponent;
+  @ViewChild('restoreDialog') private restoreDialog?: ConfirmDialogComponent;
   @ViewChild('experienceDialog') private experienceDialog?: ExperienceDialogComponent;
   @ViewChild(EditToolbarComponent) private editToolbar?: EditToolbarComponent;
 
@@ -117,8 +120,7 @@ export class AppComponent implements AfterViewChecked {
   }
 
   resetResume(): void {
-    if (!window.confirm(this.copy.messages.restoreConfirm)) return;
-    this.restoreOriginal();
+    this.restoreDialog?.show();
   }
 
   changeLocale(locale: ResumeLocale): void {

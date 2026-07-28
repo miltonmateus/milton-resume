@@ -16,6 +16,15 @@
   (startBlank)="startBlank()"
 />
 
+<app-confirm-dialog
+  #restoreDialog
+  [title]="copy.messages.restoreTitle"
+  [message]="copy.messages.restoreConfirm"
+  [cancelLabel]="copy.dialogs.cancel"
+  [confirmLabel]="copy.toolbar.restore"
+  (confirmed)="restoreOriginal()"
+/>
+
 <app-experience-dialog
   #experienceDialog
   [copy]="copy.dialogs"
@@ -24,7 +33,10 @@
 />
 
 <div class="resume-shell" [class.resume-shell--toolbar-visible]="isEditing">
-  <app-locale-switcher *ngIf="!isEditing" [locale]="currentLocale" (localeChange)="changeLocale($event)" />
+  <div class="mobile-topbar" *ngIf="!isEditing">
+    <img class="mobile-brand-logo" src="/favicon.png?v=2" alt="Milton Resume" />
+    <app-locale-switcher [locale]="currentLocale" (localeChange)="changeLocale($event)" />
+  </div>
 
   <app-resume-actions
     [layout]="layout"

@@ -6,7 +6,7 @@ const ptBrResume: Resume = {
   personal: {
     fullName: 'Milton Mateus Alves Teixeira Filho',
     professionalTitle: 'Software Engineer <span>.</span> Full Stack Developer',
-    email: 'miltonmatews@gmail.com',
+    email: 'contato@milton-software.dev',
     location: 'Porto Alegre - RS',
     linkedin: 'https://www.linkedin.com/in/milton-teixeira-89147598',
     github: 'https://github.com/miltonmateus',
@@ -17,12 +17,12 @@ const ptBrResume: Resume = {
     paragraphs: [
       'Desenvolvedor Full Stack com mais de oito anos de experiência no desenvolvimento de aplicações web, APIs e sistemas corporativos.',
       'Atuação em projetos dos setores financeiro, judiciário e de recursos humanos, trabalhando tanto no backend quanto no frontend.',
-      'Experiência com Java, TypeScript, Node.js, NestJS, C#, Angular, React, SvelteKit e MongoDB.',
+      'Experiência com Java, Spring, TypeScript, Node.js, NestJS, Angular, React, SvelteKit e MongoDB.',
     ],
   },
   skills: [
-    { title: 'Linguagens', skills: ['Java', 'TypeScript', 'JavaScript', 'C#', 'Python', 'PHP', 'SQL'] },
-    { title: 'Backend', skills: ['Node.js', 'NestJS', 'ASP.NET Core', 'REST APIs', 'Swagger / OpenAPI'] },
+    { title: 'Linguagens', skills: ['Java', 'TypeScript', 'JavaScript', 'Python', 'PHP'] },
+    { title: 'Backend', skills: ['Spring', 'Node.js', 'NestJS', 'REST APIs', 'Swagger / OpenAPI'] },
     { title: 'Frontend', skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'] },
     { title: 'Banco de dados', skills: ['MongoDB', 'Oracle'] },
     { title: 'Ferramentas', skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman'] },
@@ -113,6 +113,15 @@ const ptBrResume: Resume = {
       technologies: ['Angular', 'TypeScript', 'Node.js', 'IA'],
       projectUrl: 'https://play.google.com/store/apps/details?id=com.vbb.appdiagnostic&pcampaignid=web_share',
     },
+    {
+      title: 'Milton Resume',
+      role: 'Projeto Frontend',
+      period: '2026',
+      description:
+        'Currículo web em produção com Angular standalone, versões PT-BR e EN-US, templates reutilizáveis, edição local e publicação com domínio próprio.',
+      technologies: ['Angular', 'TypeScript', 'CSS', 'GitHub Pages'],
+      projectUrl: 'https://cv.milton-software.dev',
+    },
   ],
   languages: [
     { name: 'Português', level: 'Nativo' },
@@ -152,12 +161,12 @@ const enUsResume: Resume = {
     paragraphs: [
       'Full Stack Developer with over eight years of experience building web applications, APIs, and enterprise systems.',
       'Background in financial, legal, and human resources projects, working across backend and frontend responsibilities.',
-      'Hands-on experience with Java, TypeScript, Node.js, NestJS, C#, Angular, React, SvelteKit, and MongoDB.',
+      'Hands-on experience with Java, Spring, TypeScript, Node.js, NestJS, Angular, React, SvelteKit, and MongoDB.',
     ],
   },
   skills: [
-    { title: 'Languages', skills: ['Java', 'TypeScript', 'JavaScript', 'C#', 'Python', 'PHP', 'SQL'] },
-    { title: 'Backend', skills: ['Node.js', 'NestJS', 'ASP.NET Core', 'REST APIs', 'Swagger / OpenAPI'] },
+    { title: 'Languages', skills: ['Java', 'TypeScript', 'JavaScript', 'Python', 'PHP'] },
+    { title: 'Backend', skills: ['Spring', 'Node.js', 'NestJS', 'REST APIs', 'Swagger / OpenAPI'] },
     { title: 'Frontend', skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'] },
     { title: 'Databases', skills: ['MongoDB', 'Oracle'] },
     { title: 'Tools', skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman'] },
@@ -247,6 +256,15 @@ const enUsResume: Resume = {
         'AI-driven application designed to support information recovery, organization, and analysis workflows, with a clear user experience and efficient operation.',
       technologies: ['Angular', 'TypeScript', 'Node.js', 'AI'],
       projectUrl: 'https://play.google.com/store/apps/details?id=com.vbb.appdiagnostic&pcampaignid=web_share',
+    },
+    {
+      title: 'Milton Resume',
+      role: 'Frontend Project',
+      period: '2026',
+      description:
+        'Production web resume built with Angular standalone, PT-BR and EN-US versions, reusable templates, local editing, and a custom domain deployment.',
+      technologies: ['Angular', 'TypeScript', 'CSS', 'GitHub Pages'],
+      projectUrl: 'https://cv.milton-software.dev',
     },
   ],
   languages: [

@@ -13,12 +13,12 @@ export class ItemActionsComponent {
   @Input() showMove = true;
   @Input() disableMoveUp = false;
   @Input() disableMoveDown = false;
-  @Input() moveUpLabel = 'Mover para cima';
-  @Input() moveDownLabel = 'Mover para baixo';
-  @Input() removeLabel = 'Remover item';
-  @Input() moveUpHint = 'Move este item uma posição para cima.';
-  @Input() moveDownHint = 'Move este item uma posição para baixo.';
-  @Input() removeHint = 'Remove este item da seção.';
+  @Input() moveUpLabel = 'Move up';
+  @Input() moveDownLabel = 'Move down';
+  @Input() removeLabel = 'Remove item';
+  @Input() moveUpHint = 'Move this item up.';
+  @Input() moveDownHint = 'Move this item down.';
+  @Input() removeHint = 'Remove this item.';
 
   @Output() moveUp = new EventEmitter<void>();
   @Output() moveDown = new EventEmitter<void>();

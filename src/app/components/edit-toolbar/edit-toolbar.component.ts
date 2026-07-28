@@ -32,13 +32,13 @@ export class EditToolbarComponent {
     if (!file) return;
 
     if (!allowedProfileImageTypes.includes(file.type as (typeof allowedProfileImageTypes)[number])) {
-      window.alert('Escolha uma imagem em PNG, JPG ou WebP.');
+      window.alert(this.copy.invalidImageType);
       input.value = '';
       return;
     }
 
     if (file.size > maxProfileImageSizeInBytes) {
-      window.alert('Escolha uma imagem com até 2 MB.');
+      window.alert(this.copy.invalidImageSize);
       input.value = '';
       return;
     }
@@ -56,7 +56,7 @@ export class EditToolbarComponent {
     if (!file) return;
 
     if (file.type && file.type !== 'application/json') {
-      window.alert('Escolha um arquivo JSON exportado pelo currículo.');
+      window.alert(this.copy.invalidJsonFile);
       input.value = '';
       return;
     }

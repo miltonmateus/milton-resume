@@ -29,18 +29,22 @@ export class ExperienceDialogComponent {
 
   @Output() experienceCreated = new EventEmitter<Experience>();
 
-  readonly experienceIconOptions: Array<{ value: ResumeIconName; label: string }> = [
-    { value: 'building-2', label: 'Empresa' },
-    { value: 'code-xml', label: 'Desenvolvimento' },
-    { value: 'server-cog', label: 'Backend' },
-    { value: 'monitor-smartphone', label: 'Frontend' },
-    { value: 'database', label: 'Dados' },
-    { value: 'users-round', label: 'Equipe' },
-    { value: 'shield-check', label: 'Qualidade' },
-    { value: 'wrench', label: 'Operações' },
-  ];
-
   experienceForm = this.createBlankExperienceForm();
+
+  get experienceIconOptions(): Array<{ value: ResumeIconName; label: string }> {
+    const labels = this.copy.experienceIconLabels;
+
+    return [
+      { value: 'building-2', label: labels.company },
+      { value: 'code-xml', label: labels.development },
+      { value: 'server-cog', label: labels.backend },
+      { value: 'monitor-smartphone', label: labels.frontend },
+      { value: 'database', label: labels.data },
+      { value: 'users-round', label: labels.team },
+      { value: 'shield-check', label: labels.quality },
+      { value: 'wrench', label: labels.operations },
+    ];
+  }
 
   show(): void {
     this.experienceForm = this.createBlankExperienceForm();
