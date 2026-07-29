@@ -17,12 +17,12 @@ const ptBrResume: Resume = {
     paragraphs: [
       'Desenvolvedor Full Stack com mais de oito anos de experiência no desenvolvimento de aplicações web, APIs e sistemas corporativos.',
       'Atuação em projetos dos setores financeiro, judiciário e de recursos humanos, trabalhando tanto no backend quanto no frontend.',
-      'Experiência com Java, Spring, TypeScript, Node.js, NestJS, Angular, React, SvelteKit e MongoDB.',
+      'Experiência com Java, Spring Boot, TypeScript, Node.js, NestJS, Angular, React, SvelteKit e MongoDB.',
     ],
   },
   skills: [
     { title: 'Linguagens', skills: ['Java', 'TypeScript', 'JavaScript', 'Python'] },
-    { title: 'Backend', skills: ['Spring', 'Node.js', 'NestJS', 'REST APIs', 'Swagger / OpenAPI'] },
+    { title: 'Backend', skills: ['Spring Boot', 'Node.js', 'NestJS', 'REST APIs', 'Swagger / OpenAPI'] },
     { title: 'Frontend', skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'] },
     { title: 'Banco de dados', skills: ['MongoDB', 'Oracle'] },
     { title: 'Ferramentas', skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman'] },
@@ -161,12 +161,12 @@ const enUsResume: Resume = {
     paragraphs: [
       'Full Stack Developer with over eight years of experience building web applications, APIs, and enterprise systems.',
       'Background in financial, legal, and human resources projects, working across backend and frontend responsibilities.',
-      'Hands-on experience with Java, Spring, TypeScript, Node.js, NestJS, Angular, React, SvelteKit, and MongoDB.',
+      'Hands-on experience with Java, Spring Boot, TypeScript, Node.js, NestJS, Angular, React, SvelteKit, and MongoDB.',
     ],
   },
   skills: [
     { title: 'Languages', skills: ['Java', 'TypeScript', 'JavaScript', 'Python'] },
-    { title: 'Backend', skills: ['Spring', 'Node.js', 'NestJS', 'REST APIs', 'Swagger / OpenAPI'] },
+    { title: 'Backend', skills: ['Spring Boot', 'Node.js', 'NestJS', 'REST APIs', 'Swagger / OpenAPI'] },
     { title: 'Frontend', skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'] },
     { title: 'Databases', skills: ['MongoDB', 'Oracle'] },
     { title: 'Tools', skills: ['Git', 'Azure DevOps', 'Docker', 'Linux', 'Postman'] },
