@@ -21,7 +21,7 @@ const ptBrResume: Resume = {
     ],
   },
   skills: [
-    { title: 'Linguagens', skills: ['Java', 'TypeScript', 'JavaScript', 'Python', 'PHP'] },
+    { title: 'Linguagens', skills: ['Java', 'TypeScript', 'JavaScript', 'Python'] },
     { title: 'Backend', skills: ['Spring', 'Node.js', 'NestJS', 'REST APIs', 'Swagger / OpenAPI'] },
     { title: 'Frontend', skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'] },
     { title: 'Banco de dados', skills: ['MongoDB', 'Oracle'] },
@@ -165,7 +165,7 @@ const enUsResume: Resume = {
     ],
   },
   skills: [
-    { title: 'Languages', skills: ['Java', 'TypeScript', 'JavaScript', 'Python', 'PHP'] },
+    { title: 'Languages', skills: ['Java', 'TypeScript', 'JavaScript', 'Python'] },
     { title: 'Backend', skills: ['Spring', 'Node.js', 'NestJS', 'REST APIs', 'Swagger / OpenAPI'] },
     { title: 'Frontend', skills: ['Angular', 'React', 'Next.js', 'SvelteKit', 'HTML5', 'CSS3'] },
     { title: 'Databases', skills: ['MongoDB', 'Oracle'] },
